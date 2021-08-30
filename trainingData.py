@@ -32,7 +32,11 @@ basicAdvice = [
     "how do i drop classes?",
     "By going to your mySJSU page then click on enroll, select the term you're currently in, click drop, select the course/s that you want dropped",
     "where can i find my gpa?",
-    "Go to your mySJSU page and click myAcademics and it should be on that page."
+    "Go to your mySJSU page and click myAcademics and it should be on that page.",
+    "when can i apply for graduation",
+    "You should apply 2 semesters before you plan to graduate. More information can be found here: https://cmpe.sjsu.edu/content/apply-for-graduation#:~:text=Graduation%20does%20not%20automatically%20happen,July%201%20for%20May%20graduation).",
+    "When can I apply for graduation",
+    "You should apply 2 semesters before you plan to graduate. More information can be found here: https://cmpe.sjsu.edu/content/apply-for-graduation#:~:text=Graduation%20does%20not%20automatically%20happen,July%201%20for%20May%20graduation)."
 ]
 
 #training data for prerequisites
@@ -40,7 +44,7 @@ preq = [
     "what is the prerequisite for cs 149?",
     "CS 146 with a C- or better.",
     "what is the prereq for cs 149?",
-    "CS 146 with a C- or better."
+    "CS 146 with a C- or better.",
     "what is a prerequisite for cs 146?",
     "Math 30, Math 42 and CS 46B with a C- or better.",
     "what is the prereq for cs 146?",
@@ -60,7 +64,55 @@ preq = [
     "what is the prerequisite for cmpe 133?",
     "CMPE 131 with a C- or better.",
     "what is the prereq for cmpe 133?",
-    "CMPE 131 with a C- or better."
+    "CMPE 131 with a C- or better.",
+    "what is the prerequisite for cmpe 148?",
+    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
+    "what is the prereq for cmpe 148?",
+    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
+    "what is the prerequisite for cmpe 165?",
+    "CMPE 131 with a C- or better",
+    "what is the prereq for cmpe 165?",
+    "CMPE 131 with a C- or better",
+    "what is the prerequisite for cmpe 172?",
+    "CMPE 142 or CS 149 with a C- or better",
+    "what is the prereq for cmpe 172?",
+    "CMPE 142 or CS 149 with a C- or better",
+    "what is the prerequisite for cmpe 187?",
+    "CMPE 131 with a C- or better.",
+    "what is the prereq for cmpe 187?",
+    "CMPE 131 with a C- or better.",
+    "what is the prerequisite for cmpe 195a?",
+    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
+    "what is the prereq for cmpe 195a?",
+    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
+    "what is the prerequisite for cmpe 195b?",
+    "CMPE 195A with a C or better and must be a junior or senior",
+    "what is the prereq for cmpe 195b?",
+    "CMPE 195A with a C or better and must be a junior or senior",
+    "what is the prerequisite for engr 195a?",
+    "ENGR 100W with a C or better",
+    "what is the prereq for engr 195a?",
+    "ENGR 100W with a C or better",
+    "what is the prerequisite for engr 195b?",
+    "ENGR 195a with a C or better",
+    "what is the prereq for engr 195b?",
+    "ENGR 195a with a C or better",
+    "what is the prerequisite for CS 151?",
+    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
+    "what is the prereq for CS 151?",
+    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
+    "what is the prerequisite for CS 157A?",
+    "CS 146 with a C- or better",
+    "what is the prereq for CS 157A?",
+    "CS 146 with a C- or better",
+    "what is the prerequisite for CS 166?",
+    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
+    "what is the prereq for CS 166?",
+    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
+    "what is the prerequisite for ISE 164?",
+    "just have junior standing",
+    "what is the prereq for ISE 164?",
+    "just have junior standing"
 ]
 
 #training data about what gpa is needed to transfer
@@ -276,5 +328,8 @@ advisor = [
     "Y",
     "Your advisor is Monica Serna. You can book an appointment here: https://sjsu.campus.eab.com/student/appointments/new",
     "Z",
-    "Your advisor is Monica Serna. You can book an appointment here: https://sjsu.campus.eab.com/student/appointments/new"
+    "Your advisor is Monica Serna. You can book an appointment here: https://sjsu.campus.eab.com/student/appointments/new",
+    "Where can I apply for an appointment with my advisor?",
+    "https://sjsu.campus.eab.com/"
 ]
+
