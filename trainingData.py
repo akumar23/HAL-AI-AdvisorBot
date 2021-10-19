@@ -15,7 +15,11 @@ casualConversation = [
     "Were you named after anyone?",
     "I was named after a character in 2001: A Space Odyssey.",
     "how did you get your name?",
-    "I was named after a character in 2001: A Space Odyssey."
+    "I was named after a character in 2001: A Space Odyssey.",
+    "whats your name?",
+    "My name is HAL",
+    "what's your name?",
+    "My name is HAL"
 ]
 
 #training data for basic advising questions
@@ -40,75 +44,126 @@ basicAdvice = [
 ]
 
 #training data for prerequisites
-preq = [
+preq149 = [
     "what is the prerequisite for cs 149?",
     "CS 146 with a C- or better.",
     "what is the prereq for cs 149?",
-    "CS 146 with a C- or better.",
+    "CS 146 with a C- or better."
+]
+
+preq146 = [
     "what is a prerequisite for cs 146?",
     "Math 30, Math 42 and CS 46B with a C- or better.",
     "what is the prereq for cs 146?",
-    "Math 30, Math 42 and CS 46B with a C- or better.",
+    "Math 30, Math 42 and CS 46B with a C- or better."
+]
+
+preq131 = [
     "what is the prerequisite for cmpe 131?",
     "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better.",
     "what is the prereq for cmpe 131?",
-    "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better.",
+    "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better."
+]
+
+preq120 = [
     "what is the prerequisite for cmpe 120?",
     "CMPE 50 or CS 46B with a C- or better.",
     "what is the prereq for cmpe 120?",
-    "CMPE 50 or CS 46B with a C- or better.",
+    "CMPE 50 or CS 46B with a C- or better."
+]
+
+preq102 = [
     "what is the prerequisite for cmpe 102?",
     "CMPE 50 or CS 46B with a C- or better.",
     "what is the prereq for cmpe 102?",
-    "CMPE 50 or CS 46B with a C- or better.",
+    "CMPE 50 or CS 46B with a C- or better."
+]
+
+preq133 = [
     "what is the prerequisite for cmpe 133?",
     "CMPE 131 with a C- or better.",
     "what is the prereq for cmpe 133?",
-    "CMPE 131 with a C- or better.",
+    "CMPE 131 with a C- or better."
+]
+
+preq148 = [
     "what is the prerequisite for cmpe 148?",
     "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
     "what is the prereq for cmpe 148?",
-    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
+    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better."
+]
+
+preq165 = [
     "what is the prerequisite for cmpe 165?",
     "CMPE 131 with a C- or better",
     "what is the prereq for cmpe 165?",
-    "CMPE 131 with a C- or better",
+    "CMPE 131 with a C- or better"
+]
+
+preq172 = [
     "what is the prerequisite for cmpe 172?",
     "CMPE 142 or CS 149 with a C- or better",
     "what is the prereq for cmpe 172?",
-    "CMPE 142 or CS 149 with a C- or better",
+    "CMPE 142 or CS 149 with a C- or better"
+]
+
+preq187 = [
     "what is the prerequisite for cmpe 187?",
     "CMPE 131 with a C- or better.",
     "what is the prereq for cmpe 187?",
-    "CMPE 131 with a C- or better.",
+    "CMPE 131 with a C- or better."
+]
+
+preq195a = [
     "what is the prerequisite for cmpe 195a?",
     "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
     "what is the prereq for cmpe 195a?",
-    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
+    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better"
+]
+
+preq195b = [
     "what is the prerequisite for cmpe 195b?",
     "CMPE 195A with a C or better and must be a junior or senior",
     "what is the prereq for cmpe 195b?",
-    "CMPE 195A with a C or better and must be a junior or senior",
+    "CMPE 195A with a C or better and must be a junior or senior"
+]
+
+preqe195a = [
     "what is the prerequisite for engr 195a?",
     "ENGR 100W with a C or better",
     "what is the prereq for engr 195a?",
-    "ENGR 100W with a C or better",
+    "ENGR 100W with a C or better"
+]
+
+preqe195b = [
     "what is the prerequisite for engr 195b?",
     "ENGR 195a with a C or better",
     "what is the prereq for engr 195b?",
-    "ENGR 195a with a C or better",
+    "ENGR 195a with a C or better"
+]
+
+preq151 = [
     "what is the prerequisite for CS 151?",
     "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
     "what is the prereq for CS 151?",
-    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
+    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better"
+]
+
+preq157 = [
     "what is the prerequisite for CS 157A?",
     "CS 146 with a C- or better",
     "what is the prereq for CS 157A?",
-    "CS 146 with a C- or better",
+    "CS 146 with a C- or better"
+]
+
+preq166 = [
     "what is the prerequisite for CS 166?",
     "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
     "what is the prereq for CS 166?",
-    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
+    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better"
+]
+
+preq164 = [
     "what is the prerequisite for ISE 164?",
     "just have junior standing",
     "what is the prereq for ISE 164?",
@@ -332,4 +387,3 @@ advisor = [
     "Where can I apply for an appointment with my advisor?",
     "https://sjsu.campus.eab.com/"
 ]
-
