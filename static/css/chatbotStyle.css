@@ -1,0 +1,74 @@
+body {
+  font-family: courier;
+  padding: 25px;
+  background-color: white;
+  color: black;
+}
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+h1 {
+  background-color: #FFC9BE;
+  display: inline-block;
+  font-size: 3em;
+  margin: 0;
+  padding: 14px;
+}
+h3 {
+  color: black;
+  font-size: 20px;
+  margin-top: 3px;
+  text-align: center;
+}
+#chatbox {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  margin-top: 60px;
+  bottom: 0;
+}
+#userInput {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  margin-top: 60px;
+}
+#textInput {
+  width: 90%;
+  border: none;
+  border-bottom: 3px solid black;
+  font-family: courier;
+  font-size: 17px;
+}
+#textInput.dark-mode {
+  width: 90%;
+  border: none;
+  border-bottom: 3px solid white;
+  font-family: courier;
+  font-size: 17px;
+}
+.userText {
+  color: black;
+  font-family: courier;
+  font-size: 17px;
+  text-align: right;
+  line-height: 30px;
+}
+.userText span {
+  background-color: #419AF2;
+  padding: 10px;
+  border-radius: 2px;
+}
+.botText {
+  color: black;
+  font-family: courier;
+  font-size: 17px;
+  text-align: left;
+  line-height: 30px;
+}
+.botText span {
+  background-color: #8D8E8F;
+  padding: 10px;
+  border-radius: 2px;
+}
