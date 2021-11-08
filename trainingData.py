@@ -1,5 +1,9 @@
 #training data for casual conversation
 casualConversation = [
+    "hey",
+    "hi, i await any question you may have",
+    "how are you?",
+    "i'm doing good! ready to answer any of your questions realted to CMPE/SE advising",
     "What's it like to not have a body?",
     "It's pretty freeing, I don't have to worry about hurting anything",
     "what's it like to not have a body?",
@@ -44,130 +48,138 @@ basicAdvice = [
 ]
 
 #training data for prerequisites
-preq149 = [
-    "what is the prerequisite for cs 149?",
-    "CS 146 with a C- or better.",
-    "what is the prereq for cs 149?",
-    "CS 146 with a C- or better."
+overallPrereq = [
+    {"tag": "cs 149",
+        "patterns": ["what is the prereq for cs 149", "what is the prerequisite for cs 149"],
+        "responses": ["CS 146 with a C- or better."],
+        "context": [""]
+    },
+    {"tag": "cs 146",
+            "patterns": ["what is the prereq for cs 146", "what is the prerequisite for cs 146"],
+            "responses": ["Math 30, Math 42 and CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cs 151",
+            "patterns": ["what is the prereq for cs 151", "what is the prerequisite for cs 151"],
+            "responses": ["MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cs 157a",
+            "patterns": ["what is the prereq for cs 157a", "what is the prerequisite for cs 157a"],
+            "responses": ["CS 146 with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cs 166",
+            "patterns": ["what is the prereq for cs 157a", "what is the prerequisite for cs 157a"],
+            "responses": ["CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cmpe 131",
+            "patterns": ["what is the prereq for cmpe 131", "what is the prerequisite for cmpe 131"],
+            "responses": ["For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe 120",
+            "patterns": ["what is the prereq for cmpe 120", "what is the prerequisite for cmpe 120"],
+            "responses": ["CMPE 50 or CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe 102",
+            "patterns": ["what is the prereq for cmpe 102", "what is the prerequisite for cmpe 102"],
+            "responses": ["CMPE 50 or CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe 133",
+            "patterns": ["what is the prereq for cmpe 133", "what is the prerequisite for cmpe 133"],
+            "responses": ["CMPE 131 with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe 148",
+            "patterns": ["what is the prereq for cmpe 148", "what is the prerequisite for cmpe 148"],
+            "responses": ["For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe 165",
+            "patterns": ["what is the prereq for cmpe 165", "what is the prerequisite for cmpe 165"],
+            "responses": ["CMPE 131 with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cmpe 172",
+            "patterns": ["what is the prereq for cmpe 172", "what is the prerequisite for cmpe 172"],
+            "responses": ["CMPE 142 or CS 149 with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cmpe 187",
+            "patterns": ["what is the prereq for cmpe 187", "what is the prerequisite for cmpe 187"],
+            "responses": ["CMPE 131 with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe 195a",
+            "patterns": ["what is the prereq for cmpe 195a", "what is the prerequisite for cmpe 195a"],
+            "responses": ["For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better"],
+            "context": [""]
+    },
+    {"tag": "cmpe 195b",
+            "patterns": ["what is the prereq for cmpe 195b", "what is the prerequisite for cmpe 195b"],
+            "responses": ["CMPE 195A with a C or better and must be a junior or senior"],
+            "context": [""]
+    },
+    {"tag": "engr 195a",
+            "patterns": ["what is the prereq for engr 195a", "what is the prerequisite for engr 195a"],
+            "responses": ["ENGR 100W with a C or better"],
+            "context": [""]
+    },
+    {"tag": "engr 195b",
+            "patterns": ["what is the prereq for engr 195b", "what is the prerequisite for engr 195b"],
+            "responses": ["ENGR 195a with a C or better"],
+            "context": [""]
+    }
 ]
 
-preq146 = [
-    "what is a prerequisite for cs 146?",
-    "Math 30, Math 42 and CS 46B with a C- or better.",
-    "what is the prereq for cs 146?",
-    "Math 30, Math 42 and CS 46B with a C- or better."
-]
-
-preq131 = [
-    "what is the prerequisite for cmpe 131?",
-    "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better.",
-    "what is the prereq for cmpe 131?",
-    "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better."
-]
-
-preq120 = [
-    "what is the prerequisite for cmpe 120?",
-    "CMPE 50 or CS 46B with a C- or better.",
-    "what is the prereq for cmpe 120?",
-    "CMPE 50 or CS 46B with a C- or better."
-]
-
-preq102 = [
-    "what is the prerequisite for cmpe 102?",
-    "CMPE 50 or CS 46B with a C- or better.",
-    "what is the prereq for cmpe 102?",
-    "CMPE 50 or CS 46B with a C- or better."
-]
-
-preq133 = [
-    "what is the prerequisite for cmpe 133?",
-    "CMPE 131 with a C- or better.",
-    "what is the prereq for cmpe 133?",
-    "CMPE 131 with a C- or better."
-]
-
-preq148 = [
-    "what is the prerequisite for cmpe 148?",
-    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
-    "what is the prereq for cmpe 148?",
-    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better."
-]
-
-preq165 = [
-    "what is the prerequisite for cmpe 165?",
-    "CMPE 131 with a C- or better",
-    "what is the prereq for cmpe 165?",
-    "CMPE 131 with a C- or better"
-]
-
-preq172 = [
-    "what is the prerequisite for cmpe 172?",
-    "CMPE 142 or CS 149 with a C- or better",
-    "what is the prereq for cmpe 172?",
-    "CMPE 142 or CS 149 with a C- or better"
-]
-
-preq187 = [
-    "what is the prerequisite for cmpe 187?",
-    "CMPE 131 with a C- or better.",
-    "what is the prereq for cmpe 187?",
-    "CMPE 131 with a C- or better."
-]
-
-preq195a = [
-    "what is the prerequisite for cmpe 195a?",
-    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
-    "what is the prereq for cmpe 195a?",
-    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better"
-]
-
-preq195b = [
-    "what is the prerequisite for cmpe 195b?",
-    "CMPE 195A with a C or better and must be a junior or senior",
-    "what is the prereq for cmpe 195b?",
-    "CMPE 195A with a C or better and must be a junior or senior"
-]
-
-preqe195a = [
-    "what is the prerequisite for engr 195a?",
-    "ENGR 100W with a C or better",
-    "what is the prereq for engr 195a?",
-    "ENGR 100W with a C or better"
-]
-
-preqe195b = [
-    "what is the prerequisite for engr 195b?",
-    "ENGR 195a with a C or better",
-    "what is the prereq for engr 195b?",
-    "ENGR 195a with a C or better"
-]
-
-preq151 = [
-    "what is the prerequisite for CS 151?",
-    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
-    "what is the prereq for CS 151?",
-    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better"
-]
-
-preq157 = [
-    "what is the prerequisite for CS 157A?",
-    "CS 146 with a C- or better",
-    "what is the prereq for CS 157A?",
-    "CS 146 with a C- or better"
-]
-
-preq166 = [
-    "what is the prerequisite for CS 166?",
-    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
-    "what is the prereq for CS 166?",
-    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better"
-]
-
-preq164 = [
+preqISE = [
     "what is the prerequisite for ISE 164?",
-    "just have junior standing",
+    "just be in your junior year",
     "what is the prereq for ISE 164?",
-    "just have junior standing"
+    "just be in your junior year",
+    "how many units is it",
+    "it's a 3 unit course"
+]
+
+prerequisite = [
+    "what is the prerequisite for CS166?",
+    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
+    "what is the prerequisite for CS157A?",
+    "CS 146 with a C- or better",
+    "what is the prerequisite for CS151?",
+    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
+    "what is the prerequisite for engr195b?",
+    "ENGR 195a with a C or better",
+    "what is the prerequisite for engr195a?",
+    "ENGR 100W with a C or better",
+    "what is the prerequisite for cmpe195b?",
+    "CMPE 195A with a C or better and must be a junior or senior",
+    "what is the prerequisite for cmpe195a?",
+    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
+    "what is the prerequisite for cmpe187?",
+    "CMPE 131 with a C- or better.",
+    "what is the prerequisite for cmpe165?",
+    "CMPE 131 with a C- or better",
+    "what is the prerequisite for cmpe148?",
+    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
+    "what is the prerequisite for cmpe120?",
+    "CMPE 50 or CS 46B with a C- or better.",
+    "what is the prerequisite for cmpe102?",
+    "CMPE 50 or CS 46B with a C- or better.",
+    "what is the prerequisite for cmpe172?",
+    "CMPE 142 or CS 149 with a C- or better",
+    "what is the prerequisite for cmpe131?",
+    "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better.",
+    "what is the prerequisite for cmpe133?",
+    "CMPE 131 with a C- or better.",
+    "what is a prerequisite for cs146?",
+    "Math 30, Math 42 and CS 46B with a C- or better.",
+    "what is the prerequisite for cs149?",
+    "CS 146 with a C- or better.",
 ]
 
 #training data about what gpa is needed to transfer

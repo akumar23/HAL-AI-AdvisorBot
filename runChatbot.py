@@ -4,6 +4,7 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 from chatterbot.trainers import ChatterBotCorpusTrainer
 import trainingData
+import random
 
 app = Flask(__name__)
 
@@ -18,25 +19,9 @@ conversationTrainer = ListTrainer(hal)
 conversationTrainer.train(trainingData.casualConversation)
 conversationTrainer.train(trainingData.basicAdvice)
 conversationTrainer.train(trainingData.advisor)
-conversationTrainer.train(trainingData.preq149)
-conversationTrainer.train(trainingData.preq146)
-conversationTrainer.train(trainingData.preq131)
-conversationTrainer.train(trainingData.preq120)
-conversationTrainer.train(trainingData.preq102)
-conversationTrainer.train(trainingData.preq133)
-conversationTrainer.train(trainingData.preq148)
-conversationTrainer.train(trainingData.preq165)
-conversationTrainer.train(trainingData.preq172)
-conversationTrainer.train(trainingData.preq187)
-conversationTrainer.train(trainingData.preq195a)
-conversationTrainer.train(trainingData.preq195b)
-conversationTrainer.train(trainingData.preqe195a)
-conversationTrainer.train(trainingData.preqe195b)
-conversationTrainer.train(trainingData.preq151)
-conversationTrainer.train(trainingData.preq157)
-conversationTrainer.train(trainingData.preq166)
-conversationTrainer.train(trainingData.preq164)
 conversationTrainer.train(trainingData.gpaToTransfer)
+
+tag_list = ['cs 149', 'cs 146', 'cmpe 131', 'cmpe 120', 'cmpe 102', 'cmpe 133', 'cmpe 148', 'cmpe 165', 'cmpe 172', 'cmpe 187', 'cmpe 195a', 'cmpe 195b', 'engr 195a', 'engr 195b', 'engr 195', 'cmpe 195', 'cs 151', 'cs 157a', 'cs 166']
 
 @app.route('/')
 def index():
@@ -45,7 +30,14 @@ def index():
 @app.route("/get")
 def getResponse():
     userMessage = request.args.get('msg')
-    return str(hal.get_response(userMessage))
+    tag = [s for s in tag_list if(s in userMessage)]
+    if(bool(tag)):
+        selected_intent = next((i for i in trainingData.overallPrereq if i['tag'] == tag[0]), None)
+        possibleResponses = selected_intent['responses']
+        response = possibleResponses[random.randint(0, len(possibleResponses)-1)]
+        return str(response)
+    else:
+        return str(hal.get_response(userMessage))
 
 if __name__ == '__main__':
     app.run(debug=True)
