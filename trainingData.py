@@ -31,8 +31,6 @@ casualConversation = [
 still need to finish add and drop classes
 """
 basicAdvice = [
-    "how many units should i take each semester?",
-    "15 units is the suggested amount to graduate on time.",
     "which classes should i take for the senior project?",
     "CMPE 195A and ENGR 195A then CMPE 195B and ENGR 195B next semester or CMPE 195E and ENGR 195E then CMPE 195F and ENGR 195F next semester.",
     "how do i add classes?",
@@ -132,6 +130,11 @@ overallPrereq = [
     {"tag": "engr 195b",
             "patterns": ["what is the prereq for engr 195b", "what is the prerequisite for engr 195b"],
             "responses": ["ENGR 195a with a C or better"],
+            "context": [""]
+    },
+    {"tag": "how many units should i take",
+            "patterns": ["how many units should i take", "how many units should i take each semester"],
+            "responses": ["15 units is the suggested amount to graduate on time."],
             "context": [""]
     }
 ]
