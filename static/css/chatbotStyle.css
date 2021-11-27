@@ -69,22 +69,25 @@ html, body {
 }
 
  input {
-    background: rgba(255, 255, 255, 0.05);
+    /* background: rgba(255, 255, 255, 0.05); */
+    position: fixed;
+    /* bottom: 0; */
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 30px;
     border: none;
     width: 50%;
     padding: 1em;
     outline: none;
-    /* color: rgba(255, 255, 255, 0.9); */
     font-weight: 300;
     font-family: courier;
-    background-color: #F3F1ED;
+    /* background-color: #F3F1ED; */
+    background-color: #ECEAE5;
 }
 
 .inputBox{
-  padding-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -172,66 +175,4 @@ html, body {
   padding: 0.5rem .875rem;
   position: relative;
   word-wrap: break-word;
-}
-
-/* Slider */
-[data-theme="dark"] {
-    color: #fefefe;
-    background-color: #121212;
-}
-
-.switch {
-    height: 100px;
-    position: fixed;
-    right: 50px;
-    top: 50px;
-}
-
-.theme-switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
-}
-
-.theme-switch input {
-  display:none;
-}
-
-.slider {
-  background-color: #ccc;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: .4s;
-}
-
-.slider:before {
-  background-color: #fff;
-  bottom: 4px;
-  content: "";
-  height: 26px;
-  left: 4px;
-  position: absolute;
-  transition: .4s;
-  width: 26px;
-}
-
-input:checked + .slider {
-  background-color: #2b2b2b;
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
 }
