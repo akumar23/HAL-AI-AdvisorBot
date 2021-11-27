@@ -13,7 +13,12 @@ hal = ChatBot("HAL")
 
 #trains the AI chatbot in english using the corpus_trainer
 corpus_trainer = ChatterBotCorpusTrainer(hal);
-corpus_trainer.train("chatterbot.corpus.english")
+corpus_trainer.train("chatterbot.corpus.english.ai")
+corpus_trainer.train("chatterbot.corpus.english.conversations")
+corpus_trainer.train("chatterbot.corpus.english.computers")
+corpus_trainer.train("chatterbot.corpus.english.emotion")
+corpus_trainer.train("chatterbot.corpus.english.greetings")
+corpus_trainer.train("chatterbot.corpus.english.movies")
 
 #trains HAL using the training data defined in trainingData.py
 conversationTrainer = ListTrainer(hal)
@@ -21,12 +26,11 @@ conversationTrainer.train(trainingData.casualConversation)
 conversationTrainer.train(trainingData.basicAdvice)
 conversationTrainer.train(trainingData.advisor)
 conversationTrainer.train(trainingData.gpaToTransfer)
-conversationTrainer.train(trainingData.preqISE)
 
 correctTypos = SpellChecker()
 
-tag_list = ['cs 149', 'cs 146', 'cmpe 131', 'cmpe 120', 'cmpe 102', 'cmpe 133', 'cmpe 148', 'cmpe 165', 'cmpe 172', 'cmpe 187', 'cmpe 195a', 'cmpe 195b', 'engr 195a', 'engr 195b', 'engr 195', 'cmpe 195', 'cs 151', 'cs 157a', 'cs 166', 'how many units should i take']
-prereq = ['prerequisite', 'prereq']
+tag_list = ['cs 149', 'ise 164', 'cs 146', 'cmpe 131', 'cmpe 120', 'cmpe 102', 'cmpe 133', 'cmpe 148', 'cmpe 165', 'cmpe 172', 'cmpe 187', 'cmpe 195a', 'cmpe 195b', 'engr 195a', 'engr 195b', 'engr 195', 'cmpe 195', 'cs 151', 'cs 157a', 'cs 166', 'cs149', 'ise164', 'cs146', 'cmpe131', 'cmpe120', 'cmpe102', 'cmpe133', 'cmpe148', 'cmpe165', 'cmpe172', 'cmpe187', 'cmpe195a', 'cmpe195b', 'engr195a', 'engr195b', 'engr195', 'cmpe195', 'cs151', 'cs157a', 'cs166', 'how many units should i take']
+prereq = ['prerequisite', 'prereq', 'prerequisites', 'prereqs']
 
 @app.route('/')
 def index():
@@ -35,6 +39,7 @@ def index():
 @app.route("/get")
 def getResponse():
     userMessage = request.args.get('msg')
+    userMessage = userMessage.lower()
     userMessage = correctTypos.correction(userMessage)
     tag = [s for s in tag_list if(s in userMessage)]
     hasPrereq = [s for s in prereq if(s in userMessage)]

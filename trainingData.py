@@ -23,6 +23,8 @@ casualConversation = [
     "whats your name?",
     "My name is HAL",
     "what's your name?",
+    "My name is HAL",
+    "what is your name?",
     "My name is HAL"
 ]
 
@@ -34,7 +36,7 @@ basicAdvice = [
     "which classes should i take for the senior project?",
     "CMPE 195A and ENGR 195A then CMPE 195B and ENGR 195B next semester or CMPE 195E and ENGR 195E then CMPE 195F and ENGR 195F next semester.",
     "how do i add classes?",
-    "By going to your mySJSU page then click on enroll, select the term, click search, enter the subject you want and other information you have for the class, click search, click on the section you want for that class, click select, click next, click proced to step 2 of 3.",
+    "By going to your mySJSU page then click on enroll, select the term, click search, enter the subject you want and other information you have for the class, click search. Select the class you want and then follow the instructions on the site to finalize adding that class.",
     "how do i drop classes?",
     "By going to your mySJSU page then click on enroll, select the term you're currently in, click drop, select the course/s that you want dropped",
     "where can i find my gpa?",
@@ -132,57 +134,16 @@ overallPrereq = [
             "responses": ["ENGR 195a with a C or better"],
             "context": [""]
     },
+    {"tag": "ise 164",
+            "patterns": ["what is the prereq for ise 164", "what is the prerequisite for ise 164"],
+            "responses": ["just be in your junior year"],
+            "context": [""]
+    },
     {"tag": "how many units should i take",
             "patterns": ["how many units should i take", "how many units should i take each semester"],
             "responses": ["15 units is the suggested amount to graduate on time."],
             "context": [""]
     }
-]
-
-preqISE = [
-    "what is the prerequisite for ISE 164?",
-    "just be in your junior year",
-    "what is the prereq for ISE 164?",
-    "just be in your junior year",
-    "how many units is it",
-    "it's a 3 unit course"
-]
-
-prerequisite = [
-    "what is the prerequisite for CS166?",
-    "CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better",
-    "what is the prerequisite for CS157A?",
-    "CS 146 with a C- or better",
-    "what is the prerequisite for CS151?",
-    "MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better",
-    "what is the prerequisite for engr195b?",
-    "ENGR 195a with a C or better",
-    "what is the prerequisite for engr195a?",
-    "ENGR 100W with a C or better",
-    "what is the prerequisite for cmpe195b?",
-    "CMPE 195A with a C or better and must be a junior or senior",
-    "what is the prerequisite for cmpe195a?",
-    "For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better",
-    "what is the prerequisite for cmpe187?",
-    "CMPE 131 with a C- or better.",
-    "what is the prerequisite for cmpe165?",
-    "CMPE 131 with a C- or better",
-    "what is the prerequisite for cmpe148?",
-    "For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better.",
-    "what is the prerequisite for cmpe120?",
-    "CMPE 50 or CS 46B with a C- or better.",
-    "what is the prerequisite for cmpe102?",
-    "CMPE 50 or CS 46B with a C- or better.",
-    "what is the prerequisite for cmpe172?",
-    "CMPE 142 or CS 149 with a C- or better",
-    "what is the prerequisite for cmpe131?",
-    "For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better.",
-    "what is the prerequisite for cmpe133?",
-    "CMPE 131 with a C- or better.",
-    "what is a prerequisite for cs146?",
-    "Math 30, Math 42 and CS 46B with a C- or better.",
-    "what is the prerequisite for cs149?",
-    "CS 146 with a C- or better.",
 ]
 
 #training data about what gpa is needed to transfer
