@@ -201,6 +201,16 @@ overallPrereq = [
             "responses": ["CMPE 195A with a C or better and must be a junior or senior"],
             "context": [""]
     },
+    {"tag": "cmpe 195",
+            "patterns": ["what is the prereq for cmpe 195a", "what is the prerequisite for cmpe 195a"],
+            "responses": ["Ask the question again but specificy cmpe 195a or cmpe 195b"],
+            "context": [""]
+    },
+    {"tag": "cmpe195",
+            "patterns": ["what is the prereq for cmpe 195a", "what is the prerequisite for cmpe 195a"],
+            "responses": ["Ask the question again but specificy cmpe 195a or cmpe 195b"],
+            "context": [""]
+    },
     {"tag": "engr 195a",
             "patterns": ["what is the prereq for engr 195a", "what is the prerequisite for engr 195a"],
             "responses": ["ENGR 100W with a C or better"],
@@ -221,6 +231,16 @@ overallPrereq = [
             "responses": ["ENGR 195a with a C or better"],
             "context": [""]
     },
+    {"tag": "engr 195",
+            "patterns": ["what is the prereq for engr 195b", "what is the prerequisite for engr 195b"],
+            "responses": ["Ask the question again but specificy engr 195a or engr 195b"],
+            "context": [""]
+    },
+    {"tag": "engr195",
+            "patterns": ["what is the prereq for engr 195b", "what is the prerequisite for engr 195b"],
+            "responses": ["Ask the question again but specificy engr 195a or engr 195b"],
+            "context": [""]
+    },
     {"tag": "ise 164",
             "patterns": ["what is the prereq for ise 164", "what is the prerequisite for ise 164"],
             "responses": ["just be in your junior year"],
@@ -230,7 +250,7 @@ overallPrereq = [
             "patterns": ["what is the prereq for ise 164", "what is the prerequisite for ise 164"],
             "responses": ["just be in your junior year"],
             "context": [""]
-    },    
+    },
     {"tag": "how many units should i take",
             "patterns": ["how many units should i take", "how many units should i take each semester"],
             "responses": ["15 units is the suggested amount to graduate on time."],

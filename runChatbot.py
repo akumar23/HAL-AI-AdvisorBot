@@ -29,7 +29,7 @@ conversationTrainer.train(trainingData.gpaToTransfer)
 
 correctTypos = SpellChecker()
 
-tag_list = ['cs 149', 'ise 164', 'cs 146', 'cmpe 131', 'cmpe 120', 'cmpe 102', 'cmpe 133', 'cmpe 148', 'cmpe 165', 'cmpe 172', 'cmpe 187', 'cmpe 195a', 'cmpe 195b', 'engr 195a', 'engr 195b', 'engr 195', 'cmpe 195', 'cs 151', 'cs 157a', 'cs 166', 'cs149', 'ise164', 'cs146', 'cmpe131', 'cmpe120', 'cmpe102', 'cmpe133', 'cmpe148', 'cmpe165', 'cmpe172', 'cmpe187', 'cmpe195a', 'cmpe195b', 'engr195a', 'engr195b', 'engr195', 'cmpe195', 'cs151', 'cs157a', 'cs166', 'how many units should i take']
+tag_list = ['cs 149', 'ise 164', 'cs 146', 'cmpe 131', 'cmpe 120', 'cmpe 102', 'cmpe 133', 'cmpe 148', 'cmpe 165', 'cmpe 172', 'cmpe 187', 'cmpe 195a', 'cmpe 195b', 'engr 195a', 'engr 195b', 'engr 195', 'cmpe 195', 'cmpe195', 'engr195', 'cs 151', 'cs 157a', 'cs 166', 'cs149', 'ise164', 'cs146', 'cmpe131', 'cmpe120', 'cmpe102', 'cmpe133', 'cmpe148', 'cmpe165', 'cmpe172', 'cmpe187', 'cmpe195a', 'cmpe195b', 'engr195a', 'engr195b', 'engr195', 'cmpe195', 'cs151', 'cs157a', 'cs166', 'how many units should i take']
 prereq = ['prerequisite', 'prereq', 'prerequisites', 'prereqs']
 
 @app.route('/')
