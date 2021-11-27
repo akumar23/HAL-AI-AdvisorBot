@@ -44,7 +44,9 @@ basicAdvice = [
     "when can i apply for graduation",
     "You should apply 2 semesters before you plan to graduate. More information can be found here: https://cmpe.sjsu.edu/content/apply-for-graduation#:~:text=Graduation%20does%20not%20automatically%20happen,July%201%20for%20May%20graduation).",
     "When can I apply for graduation",
-    "You should apply 2 semesters before you plan to graduate. More information can be found here: https://cmpe.sjsu.edu/content/apply-for-graduation#:~:text=Graduation%20does%20not%20automatically%20happen,July%201%20for%20May%20graduation)."
+    "You should apply 2 semesters before you plan to graduate. More information can be found here: https://cmpe.sjsu.edu/content/apply-for-graduation#:~:text=Graduation%20does%20not%20automatically%20happen,July%201%20for%20May%20graduation).",
+    "What is the reccomended number of units for each semester",
+    "15 units is suggested to graduate on time"
 ]
 
 #training data for prerequisites
@@ -54,7 +56,17 @@ overallPrereq = [
         "responses": ["CS 146 with a C- or better."],
         "context": [""]
     },
+    {"tag": "cs149",
+        "patterns": ["what is the prereq for cs 149", "what is the prerequisite for cs 149"],
+        "responses": ["CS 146 with a C- or better."],
+        "context": [""]
+    },
     {"tag": "cs 146",
+            "patterns": ["what is the prereq for cs 146", "what is the prerequisite for cs 146"],
+            "responses": ["Math 30, Math 42 and CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cs146",
             "patterns": ["what is the prereq for cs 146", "what is the prerequisite for cs 146"],
             "responses": ["Math 30, Math 42 and CS 46B with a C- or better."],
             "context": [""]
@@ -64,7 +76,17 @@ overallPrereq = [
             "responses": ["MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better"],
             "context": [""]
     },
+    {"tag": "cs151",
+            "patterns": ["what is the prereq for cs 151", "what is the prerequisite for cs 151"],
+            "responses": ["MATH 42, CS 46b and CS 49J or equal java knowledge with a C- or better"],
+            "context": [""]
+    },
     {"tag": "cs 157a",
+            "patterns": ["what is the prereq for cs 157a", "what is the prerequisite for cs 157a"],
+            "responses": ["CS 146 with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cs157a",
             "patterns": ["what is the prereq for cs 157a", "what is the prerequisite for cs 157a"],
             "responses": ["CS 146 with a C- or better"],
             "context": [""]
@@ -74,7 +96,17 @@ overallPrereq = [
             "responses": ["CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better"],
             "context": [""]
     },
+    {"tag": "cs166",
+            "patterns": ["what is the prereq for cs 157a", "what is the prerequisite for cs 157a"],
+            "responses": ["CS 146 with a C- or better and either CS 47 or CMPE 102 or CMPE 120 with a C- or better"],
+            "context": [""]
+    },
     {"tag": "cmpe 131",
+            "patterns": ["what is the prereq for cmpe 131", "what is the prerequisite for cmpe 131"],
+            "responses": ["For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe131",
             "patterns": ["what is the prereq for cmpe 131", "what is the prerequisite for cmpe 131"],
             "responses": ["For a CMPE major, CMPE 126 with a C- or better. For a SE major, CS 46B with a C- or better."],
             "context": [""]
@@ -84,7 +116,17 @@ overallPrereq = [
             "responses": ["CMPE 50 or CS 46B with a C- or better."],
             "context": [""]
     },
+    {"tag": "cmpe120",
+            "patterns": ["what is the prereq for cmpe 120", "what is the prerequisite for cmpe 120"],
+            "responses": ["CMPE 50 or CS 46B with a C- or better."],
+            "context": [""]
+    },
     {"tag": "cmpe 102",
+            "patterns": ["what is the prereq for cmpe 102", "what is the prerequisite for cmpe 102"],
+            "responses": ["CMPE 50 or CS 46B with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe102",
             "patterns": ["what is the prereq for cmpe 102", "what is the prerequisite for cmpe 102"],
             "responses": ["CMPE 50 or CS 46B with a C- or better."],
             "context": [""]
@@ -94,7 +136,17 @@ overallPrereq = [
             "responses": ["CMPE 131 with a C- or better."],
             "context": [""]
     },
+    {"tag": "cmpe133",
+            "patterns": ["what is the prereq for cmpe 133", "what is the prerequisite for cmpe 133"],
+            "responses": ["CMPE 131 with a C- or better."],
+            "context": [""]
+    },
     {"tag": "cmpe 148",
+            "patterns": ["what is the prereq for cmpe 148", "what is the prerequisite for cmpe 148"],
+            "responses": ["For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better."],
+            "context": [""]
+    },
+    {"tag": "cmpe148",
             "patterns": ["what is the prereq for cmpe 148", "what is the prerequisite for cmpe 148"],
             "responses": ["For a se major: CMPE 120 and CS 146 with a C- or better. For a cmpe major: CMPE 124 and CMPE 126 with a C- or better."],
             "context": [""]
@@ -104,7 +156,17 @@ overallPrereq = [
             "responses": ["CMPE 131 with a C- or better"],
             "context": [""]
     },
+    {"tag": "cmpe165",
+            "patterns": ["what is the prereq for cmpe 165", "what is the prerequisite for cmpe 165"],
+            "responses": ["CMPE 131 with a C- or better"],
+            "context": [""]
+    },
     {"tag": "cmpe 172",
+            "patterns": ["what is the prereq for cmpe 172", "what is the prerequisite for cmpe 172"],
+            "responses": ["CMPE 142 or CS 149 with a C- or better"],
+            "context": [""]
+    },
+    {"tag": "cmpe172",
             "patterns": ["what is the prereq for cmpe 172", "what is the prerequisite for cmpe 172"],
             "responses": ["CMPE 142 or CS 149 with a C- or better"],
             "context": [""]
@@ -114,7 +176,17 @@ overallPrereq = [
             "responses": ["CMPE 131 with a C- or better."],
             "context": [""]
     },
+    {"tag": "cmpe187",
+            "patterns": ["what is the prereq for cmpe 187", "what is the prerequisite for cmpe 187"],
+            "responses": ["CMPE 131 with a C- or better."],
+            "context": [""]
+    },
     {"tag": "cmpe 195a",
+            "patterns": ["what is the prereq for cmpe 195a", "what is the prerequisite for cmpe 195a"],
+            "responses": ["For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better"],
+            "context": [""]
+    },
+    {"tag": "cmpe195a",
             "patterns": ["what is the prereq for cmpe 195a", "what is the prerequisite for cmpe 195a"],
             "responses": ["For CMPE majors: CMPE 125, CMPE 127, CMPE 130, CMPE 131 with a C- or better and ENGR 100W with a C- or better \n for SE majors: CMPE 133, CS 146, ISE 130 or MATH 161A with a C- or better and ENGR 100W with a C or better"],
             "context": [""]
@@ -124,7 +196,17 @@ overallPrereq = [
             "responses": ["CMPE 195A with a C or better and must be a junior or senior"],
             "context": [""]
     },
+    {"tag": "cmpe195b",
+            "patterns": ["what is the prereq for cmpe 195b", "what is the prerequisite for cmpe 195b"],
+            "responses": ["CMPE 195A with a C or better and must be a junior or senior"],
+            "context": [""]
+    },
     {"tag": "engr 195a",
+            "patterns": ["what is the prereq for engr 195a", "what is the prerequisite for engr 195a"],
+            "responses": ["ENGR 100W with a C or better"],
+            "context": [""]
+    },
+    {"tag": "engr195a",
             "patterns": ["what is the prereq for engr 195a", "what is the prerequisite for engr 195a"],
             "responses": ["ENGR 100W with a C or better"],
             "context": [""]
@@ -134,11 +216,21 @@ overallPrereq = [
             "responses": ["ENGR 195a with a C or better"],
             "context": [""]
     },
+    {"tag": "engr195b",
+            "patterns": ["what is the prereq for engr 195b", "what is the prerequisite for engr 195b"],
+            "responses": ["ENGR 195a with a C or better"],
+            "context": [""]
+    },
     {"tag": "ise 164",
             "patterns": ["what is the prereq for ise 164", "what is the prerequisite for ise 164"],
             "responses": ["just be in your junior year"],
             "context": [""]
     },
+    {"tag": "ise164",
+            "patterns": ["what is the prereq for ise 164", "what is the prerequisite for ise 164"],
+            "responses": ["just be in your junior year"],
+            "context": [""]
+    },    
     {"tag": "how many units should i take",
             "patterns": ["how many units should i take", "how many units should i take each semester"],
             "responses": ["15 units is the suggested amount to graduate on time."],
