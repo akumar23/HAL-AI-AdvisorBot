@@ -4,59 +4,88 @@
 <head>
 <link/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/chatbotStyle.css') }}">
+<!-- <link rel="stylesheet" id="theme-link" href="{{ url_for('static', filename='css/chatbotStyle.css') }}"> -->
+<link rel="stylesheet" id="theme-link" href="../static/css/chatbotStyle.css">
 </head>
 
 <body class>
-<button onclick="darkModeToggle()">Toggle dark mode</button>
+<!-- <button onclick="darkModeToggle()">Toggle dark mode</button> -->
+<button class="btn-toggle">Toggle Dark-Mode</button>
+<!-- <div class="switch">
+        <label class="theme-switch" for="checkbox">
+            <input onclick="swapStyleSheet()" id="checkbox" type="checkbox" name="lightSwitch">
+            <div class="slider round"></div>
+        </label>
+        <em>Enable Dark Mode!</em>
+    </div> -->
+
+
 <script>
-function darkModeToggle() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-}
+  // function swapStyleSheet() {
+  //   if (document.getElementById("checkbox").checked) {
+  //       document.getElementById("theme-link").setAttribute('href', '../static/css/darkmode.css');
+  //   } else {
+  //       document.getElementById("theme-link").setAttribute('href', "../static/css/chatbotStyle.css");
+  //       }
+  //   }
+
+  const btn = document.querySelector(".btn-toggle");
+  const theme = document.querySelector("#theme-link");
+  btn.addEventListener("click", function() {
+
+    if (theme.getAttribute("href") == "../static/css/chatbotStyle.css") {
+      theme.href = "../static/css/darkmode.css";
+    } else {
+      theme.href = "../static/css/chatbotStyle.css";
+    }
+  });
 </script>
-<div class="box"></div>
-<div class="boxed">
-<div>
 
-<div id="chatbox">
-<img
-src="https://image.flaticon.com/icons/png/128/36/36929.png"
-alt="HAL"
-style="width:50px;height:50px;"
-/>
-<p class="botText">
-<span>Hi! Ask me a question related to CMPE or SE advising or you can have a general conversation with me :)</span>
-</p>
-</div>
-<div id="userInput">
-<input id="textInput" type="text" name="msg" placeholder="type your message here" />
-</div>
-</div>
+<!-- box changed to container -->
+<div class="container">
+    <h1>CMPE/SE Advising</h1>
+    <div class = "chatbot">
 
-<script>
-        function getBotResponse() {
-          var rawText = $("#textInput").val();
-          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
-          $("#textInput").val("");
-          $("#chatbox").append(userHtml);
+        <div id="chatbox">
+            <!-- <img
+            src="https://image.flaticon.com/icons/png/128/36/36929.png"
+            alt="HAL"
+            style="width:50px;height:60px; padding-bottom: 15px;"/> -->
+            <p class="botText">
+                <span>Hi! Ask me a question related to CMPE or SE advising or you can have a general conversation with me :)</span>
+            </p>
+        </div>
+
+        <div id="userInput">
+          <div class = "inputBox">
+            <input id="textInput" type="text" name="msg" placeholder="Type your message here" />
+          </div>
+        </div>
+  </div>
+
+  <script>
+      function getBotResponse() {
+      var rawText = $("#textInput").val();
+      var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+      $("#textInput").val("");
+      $("#chatbox").append(userHtml);
+      document
+          .getElementById("userInput")
+          .scrollIntoView({ block: "start", behavior: "smooth" });
+      $.get("/get", { msg: rawText }).done(function(data) {
+          var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+          $("#chatbox").append(botHtml);
           document
-            .getElementById("userInput")
-            .scrollIntoView({ block: "start", behavior: "smooth" });
-          $.get("/get", { msg: rawText }).done(function(data) {
-            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
-            $("#chatbox").append(botHtml);
-            document
-              .getElementById("userInput")
-              .scrollIntoView({ block: "start", behavior: "smooth" });
-          });
-        }
-        $("#textInput").keypress(function(e) {
-          if (e.which == 13) {
-            getBotResponse();
-          }
-        });
-      </script>
+          .getElementById("userInput")
+          .scrollIntoView({ block: "start", behavior: "smooth" });
+      });
+      }
+      $("#textInput").keypress(function(e) {
+      if (e.which == 13) {
+          getBotResponse();
+      }
+      });
+  </script>
 </div>
 </body>
 </html>
