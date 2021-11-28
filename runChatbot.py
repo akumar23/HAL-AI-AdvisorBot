@@ -56,7 +56,7 @@ def getResponse():
         response = possibleResponses[1]
         return str(response)
     else:
-        return str(hal.get_response(userMessage)) + " If you don't like my answer, you can reword the question and ask it again or as me who your advisor is to get more indepth answers. I'm ready for more advising related questions."
+        return str(hal.get_response(userMessage))
 
 if __name__ == '__main__':
     app.run(debug=True)
