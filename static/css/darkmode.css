@@ -7,9 +7,10 @@
 
 /* Body Format */
 html, body {
-    background: #F9F6F1;
+    background-color: #121212;
     font-family: courier;
     justify-content: center;
+    color: white;
 }
 
 /* Building Chatbot Content */
@@ -22,6 +23,7 @@ html, body {
     padding-bottom: 30px;
     overflow-y: scroll;
     height: 400px;
+    /* scroll-padding: 50px 0 0 50px; */
 }
 
 .container {
@@ -42,7 +44,7 @@ html, body {
 
 /* Chatbot Container  */
 .chatbot {
-    background: rgba(255, 255, 255, 0.05);
+    background-color: #323f4b;
     width: 600px;
     border-radius: 10px;
     position: relative;
@@ -54,7 +56,8 @@ html, body {
     text-align: left;
     margin: -0.25em 2em;
     color: #fff;
-    width: 400px;
+    max-width: 400px;
+
 }
 
  input {
@@ -68,7 +71,7 @@ html, body {
     outline: none;
     font-weight: 300;
     font-family: courier;
-    background-color: #F0EEE8;
+    background-color: #cbd2d9;
     border-radius: 10px;
 }
 
@@ -83,7 +86,6 @@ html, body {
 } */
 
 ::placeholder {
-    /* color: rgba(255, 255, 255, 0.9); */
      color: black;
 }
 
@@ -119,9 +121,10 @@ html, body {
   font-size: 17px;
 
 }
+
 .userText {
   padding-top: 10px;
-  color: black;
+  color: #f5f7fa;
   font-family: courier;
   font-size: 17px;
   text-align: right;
@@ -139,11 +142,9 @@ html, body {
   display: inline-block;
   text-align: left;
 }
-
- .botText {
-  /* padding: 10px; */
+.botText {
   padding-top: 10px;
-  color: black;
+  color: #f5f7fa;
   font-family: courier;
   font-size: 17px;
   text-align: left;
@@ -152,7 +153,7 @@ html, body {
 
 /* Bot Messages */
 .botText span {
-  background-color: #E2E2E2;
+  background-color: #616e7c;
   padding: 6px;
   border-radius: 1.15rem;
   line-height: 1.25;
@@ -163,13 +164,12 @@ html, body {
   display: inline-block;
 }
 
-
 /* Button */
 .button {
   border-radius: 4px;
-  background-color: #F1E1C6;
+  background-color: #7b8794;
   border: none;
-  color: black;
+  color: #f5f7fa;
   text-align: center;
   font-size: 20px;
   padding: 15px;
