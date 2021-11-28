@@ -107,6 +107,10 @@ html, body {
   background: #C2C2C2;
 }
 
+input:hover{
+  background-color: #EAE8E0;
+}
+
 /* Input and Response */
  #userInput {
   margin-left: auto;
