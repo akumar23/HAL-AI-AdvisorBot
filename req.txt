@@ -1,3 +1,0 @@
-flask
-chatterbot==1.0.0
-pyspellchecker
