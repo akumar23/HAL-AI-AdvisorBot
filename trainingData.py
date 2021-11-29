@@ -530,7 +530,7 @@ gpaToTransfer = [
     "You need at least 3 course requirements.",
     "Zero",
     "You need at least 3 course requirements.",
-   "what gpa do i need to transfer into se?",
+    "what gpa do i need to transfer into se?",
     "how many course requirements have you completed?",
     "7",
     "At least a 3.4 GPA is reccomended.",
@@ -579,8 +579,8 @@ gpaToTransfer = [
     "zero",
     "You need at least 3 course requirements.",
     "Zero",
-    "You need at least 3 course requirements.",    
-    "what gpa do i need to get into computer engineering",
+    "You need at least 3 course requirements.",
+    "what gpa do i need to transfer into computer engineering",
     "how many course requirements have you completed?",
     "7",
     "At least a 2.8 GPA is reccomended.",
@@ -630,7 +630,7 @@ gpaToTransfer = [
     "At least a 4.2 GPA is reccomended.",
     "Zero",
     "At least a 4.2 GPA is reccomended.",
- "what gpa do i need to get into cmpe?",
+    "what gpa do i need to transfer into cmpe?",
     "how many course requirements have you completed?",
     "7",
     "At least a 2.8 GPA is reccomended.",
@@ -679,7 +679,7 @@ gpaToTransfer = [
     "zero",
     "At least a 4.2 GPA is reccomended.",
     "Zero",
-    "At least a 4.2 GPA is reccomended."    
+    "At least a 4.2 GPA is reccomended."
 ]
 
 #training data for who someone's advisor is
