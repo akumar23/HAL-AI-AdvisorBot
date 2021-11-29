@@ -32,19 +32,9 @@ casualConversation = [
 basicAdvice = [
     "which classes should i take for the senior project?",
     "CMPE 195A and ENGR 195A then CMPE 195B and ENGR 195B next semester or CMPE 195E and ENGR 195E then CMPE 195F and ENGR 195F next semester.",
-    "how do i add classes?",
-    "By going to your mySJSU page then click on 'enroll', select the term, click 'search', enter the subject you want and other information you have for the class, click 'search'. Select the class you want and then follow the instructions on the site to finalize adding that class.",
-    "how do i add one class?",
-    "By going to your mySJSU page then click on 'enroll', select the term, click 'search', enter the subject you want and other information you have for the class, click 'search'. Select the class you want and then follow the instructions on the site to finalize adding that class.",
-    "how do i add a class?",
-    "By going to your mySJSU page then click on 'enroll', select the term, click 'search', enter the subject you want and other information you have for the class, click 'search'. Select the class you want and then follow the instructions on the site to finalize adding that class.",
-    "how do i drop classes?",
-    "By going to your mySJSU page then click on 'enroll', select the term you're currently in, click 'drop', select the course/s that you want dropped then follow the directions on the page until the class is succefully dropped",
-    "how do i drop a class?",
-    "By going to your mySJSU page then click on 'enroll', select the term you're currently in, click 'drop', select the course/s that you want dropped then follow the directions on the page until the class is succefully dropped",
-    "how do i drop one class?",
-    "By going to your mySJSU page then click on 'enroll', select the term you're currently in, click 'drop', select the course/s that you want dropped then follow the directions on the page until the class is succefully dropped",
     "where can i find my gpa?",
+    "Go to your mySJSU page and click 'myAcademics' and it should be on that page under 'Current Academic Summary.'",
+    "how do i find my gpa?",
     "Go to your mySJSU page and click 'myAcademics' and it should be on that page under 'Current Academic Summary.'",
     "when can i apply for graduation",
     "You should apply 2 semesters before you plan to graduate. More information can be found here: https://cmpe.sjsu.edu/content/apply-for-graduation#:~:text=Graduation%20does%20not%20automatically%20happen,July%201%20for%20May%20graduation).",
@@ -53,11 +43,11 @@ basicAdvice = [
     "what is the reccomended number of units for each semester",
     "15 units is suggested to graduate on time",
     "where do i find my grades",
-    "Go to your mySJSU page and click on 'myAcademics' then click on 'view my course history' and you can see all of your grades there. For classes you took this semester, it will take a few weeks for thos grades to appear.",
+    "Go to your mySJSU page and click on 'myAcademics' then click on 'view my course history' and you can see all of your grades there. For classes you took this semester, it will take a few weeks for those grades to appear.",
     "how do i find my grades",
-    "Go to your mySJSU page and click on 'myAcademics' then click on 'view my course history' and you can see all of your grades there. For classes you took this semester, it will take a few weeks for thos grades to appear.",
+    "Go to your mySJSU page and click on 'myAcademics' then click on 'view my course history' and you can see all of your grades there. For classes you took this semester, it will take a few weeks for those grades to appear.",
     "my grades",
-    "Go to your mySJSU page and click on 'myAcademics' then click on 'view my course history' and you can see all of your grades there. For classes you took this semester, it will take a few weeks for thos grades to appear.",
+    "Go to your mySJSU page and click on 'myAcademics' then click on 'view my course history' and you can see all of your grades there. For classes you took this semester, it will take a few weeks for those grades to appear.",
     "where do i find my transcript",
     "An unoffical transcript can be found by going to your mySJSU page and click on 'myAcademics' and click on 'View my unoffical transcript.' You can order an offical one at this link: https://newdev.sjsu.edu/registrar/academic_records/transcripts/index.php",
     "where can i find my transcript",
@@ -65,6 +55,10 @@ basicAdvice = [
     "transcript",
     "An unoffical transcript can be found by going to your mySJSU page and click on 'myAcademics' and click on 'View my unoffical transcript.' You can order an offical one at this link: https://newdev.sjsu.edu/registrar/academic_records/transcripts/index.php",
     "can i drop a class and get a refund",
+    "If you drop before it starts then you get a full refund. Each class has a different deadline to drop based on the length of the class. Find the number of days from start to finish including weekends. Calcualte 10% of that class length, that's the deadline. If you drop between the time the class starts and that deadline you get a 75% refund but if you drop after the deadline you get no refund.",
+    "how do i get a refund for a class",
+    "If you drop before it starts then you get a full refund. Each class has a different deadline to drop based on the length of the class. Find the number of days from start to finish including weekends. Calcualte 10% of that class length, that's the deadline. If you drop between the time the class starts and that deadline you get a 75% refund but if you drop after the deadline you get no refund.",
+    "when can i get a refund for a class",
     "If you drop before it starts then you get a full refund. Each class has a different deadline to drop based on the length of the class. Find the number of days from start to finish including weekends. Calcualte 10% of that class length, that's the deadline. If you drop between the time the class starts and that deadline you get a 75% refund but if you drop after the deadline you get no refund.",
     "how do refunds for a class work",
     "If you drop before it starts then you get a full refund. Each class has a different deadline to drop based on the length of the class. Find the number of days from start to finish including weekends. Calcualte 10% of that class length, that's the deadline. If you drop between the time the class starts and that deadline you get a 75% refund but if you drop after the deadline you get no refund.",
@@ -124,6 +118,25 @@ basicAdvice = [
     "You can take at most 70 units at a community college. Its best to talk to an advisor for more specific details.",
     "can i take classes at a different college and transfer them",
     "You can take at most 70 units at a community college. Its best to talk to an advisor for more specific details."
+]
+
+#training data to add and drop classes
+addAndDrop = [
+    {"tag": "add",
+        "patterns": ["how do i add a class", "how do i add classes"],
+        "responses": ["By going to your mySJSU page then click on 'enroll', select the term, click 'search', enter the subject you want and other information you have for the class, click 'search'. Select the class you want and then follow the instructions on the site to finalize adding that class."],
+        "context": [""]
+    },
+    {"tag": "enroll",
+        "patterns": ["how do i enroll in a class", "how do i enroll in classes"],
+        "responses": ["By going to your mySJSU page then click on 'enroll', select the term, click 'search', enter the subject you want and other information you have for the class, click 'search'. Select the class you want and then follow the instructions on the site to finalize adding that class."],
+        "context": [""]
+    },
+    {"tag": "drop",
+        "patterns": ["how do i drop a class", "how do i drop classes"],
+        "responses": ["By going to your mySJSU page then click on 'enroll', select the term you're currently in, click 'drop', select the course/s that you want dropped then follow the directions on the page until the class is succefully dropped"],
+        "context": [""]
+    }
 ]
 
 #training data for prerequisites

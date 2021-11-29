@@ -30,6 +30,9 @@ correctTypos = SpellChecker()
 
 tag_list = ['cs 149', 'ise 164', 'cs 146', 'cmpe 131', 'cmpe 120', 'cmpe 102', 'cmpe 133', 'cmpe 148', 'cmpe 165', 'cmpe 172', 'cmpe 187', 'cmpe 195a', 'cmpe 195b', 'engr 195a', 'engr 195b', 'engr 195', 'cmpe 195', 'cmpe195', 'engr195', 'cs 151', 'cs 157a', 'cs 166', 'cs149', 'ise164', 'cs146', 'cmpe131', 'cmpe120', 'cmpe102', 'cmpe133', 'cmpe148', 'cmpe165', 'cmpe172', 'cmpe187', 'cmpe195a', 'cmpe195b', 'engr195a', 'engr195b', 'engr195', 'cmpe195', 'cs151', 'cs157a', 'cs166', 'how many units should i take', 'cmpe 137', 'cmpe137', 'cmpe 139', 'cmpe139', 'cmpe 152', 'cmpe152', 'cmpe 185', 'cmpe185', 'cmpe 181', 'cmpe181', 'cmpe 182', 'cmpe182', 'cmpe 183', 'cmpe183', 'cmpe 185', 'cmpe185', 'cmpe 188', 'cmpe188', 'cmpe 189', 'cmpe189', 'cs 116a', 'cs116a', 'cs 134', 'cs134', 'cs 152', 'cs152']
 prereq = ['prerequisite', 'prereq', 'prerequisites', 'prereqs', 'take before', 'what class do i need to']
+addOrDrop = ['add', 'enroll', 'drop']
+classTag = ['class', 'classes']
+altClassTags = ['refund', 'late', 'deadline', 'latest', 'last']
 
 @app.route('/')
 def index():
@@ -42,6 +45,11 @@ def getResponse():
     userMessage = correctTypos.correction(userMessage)
     tag = [s for s in tag_list if(s in userMessage)]
     hasPrereq = [s for s in prereq if(s in userMessage)]
+
+    hasAddorDrop = [s for s in addOrDrop if(s in userMessage)]
+    hasClass = [s for s in classTag if(s in userMessage)]
+    hasAltClassTags = [s for s in altClassTags if(s in userMessage)]
+
     if(bool(tag) and bool(hasPrereq)):
         selected_intent = next((i for i in trainingData.overallPrereq if i['tag'] == tag[0]), None)
         possibleResponses = selected_intent['responses']
@@ -53,6 +61,13 @@ def getResponse():
         selected_intent = next((i for i in trainingData.overallPrereq if i['tag'] == tag[0]), None)
         possibleResponses = selected_intent['responses']
         response = possibleResponses[1]
+        return str(response)
+    elif((bool(hasAltClassTags))):
+        return str(hal.get_response(userMessage))
+    elif((bool(hasAddorDrop) and bool(hasClass))):
+        selected_intent = next((i for i in trainingData.addAndDrop if i['tag'] == hasAddorDrop[0]), None)
+        possibleResponses = selected_intent['responses']
+        response = possibleResponses[0]
         return str(response)
     else:
         return str(hal.get_response(userMessage))
