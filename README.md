@@ -1,6 +1,11 @@
 # HAL-AI-AdvisorBot
 An AI chatbot that gives advice to CMPE and SE students at SJSU.
 
+demo video: https://youtu.be/dVwozVz11ho
+
+
+instructions to run:
+
 Download or git clone the code and navigate to where the project is downloaded.
 
 Make sure you have python3 and pip3.
