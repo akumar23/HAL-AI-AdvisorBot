@@ -1,6 +1,8 @@
 # HAL-AI-AdvisorBot
 An AI chatbot that gives advice to CMPE and SE students at SJSU.
 
+to get from docker: docker pull mfaryan/hal-final
+
 demo video: https://youtu.be/dVwozVz11ho
 
 
