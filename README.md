@@ -3,7 +3,7 @@ An AI chatbot that gives advice to CMPE and SE students at SJSU.
 
 to get from docker: docker pull mfaryan/hal-final
 
-demo video: https://youtu.be/dVwozVz11ho
+demo video: https://youtu.be/dVwozVz11ho?t=78
 
 
 instructions to run:
