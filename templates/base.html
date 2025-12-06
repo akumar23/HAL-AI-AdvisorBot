@@ -1,73 +1,578 @@
 <!DOCTYPE html>
-<html>
-<title>HAL</title>
+<html lang="en">
 <head>
-<link/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <link rel="stylesheet" id="theme-link" href="{{ url_for('static', filename='css/chatbotStyle.css') }}"> -->
-<link rel="stylesheet" id="theme-link" href="../static/css/chatbotStyle.css">
+    <title>HAL - CMPE/SE Advisor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HAL - AI-powered academic advisor for SJSU CMPE and SE students">
+
+    <!-- Compiled Tailwind CSS -->
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<body class>
-<div class = "box">
-  <button class="button"><span>Dark Mode </span></button>
-</div>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-sjsu-blue text-white px-4 py-2 rounded z-50">
+        Skip to main content
+    </a>
 
-<script>
-  const btn = document.querySelector(".button");
-  const theme = document.querySelector("#theme-link");
-  btn.addEventListener("click", function() {
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-40">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-sjsu-blue rounded-full flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">H</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-900 dark:text-white">HAL Advisor</h1>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">CMPE/SE Academic Advising</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button
+                    id="darkModeToggle"
+                    class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 focus-ring"
+                    aria-label="Toggle dark mode"
+                    title="Toggle dark mode">
+                    <svg class="w-5 h-5 text-gray-600 dark:text-gray-300 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                    <svg class="w-5 h-5 text-gray-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                </button>
+                <button
+                    id="clearChatBtn"
+                    class="px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20 rounded-lg focus-ring"
+                    aria-label="Clear chat history">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </header>
 
-    if (theme.getAttribute("href") == "../static/css/chatbotStyle.css") {
-      theme.href = "../static/css/darkmode.css";
-    } else {
-      theme.href = "../static/css/chatbotStyle.css";
-    }
-  });
-</script>
+    <!-- Main content -->
+    <main id="main-content" class="max-w-4xl mx-auto px-4 pb-32 md:pb-24" role="main">
+        <!-- Provider info -->
+        <div id="providerInfo" class="text-center text-xs text-gray-400 dark:text-gray-500 py-2"></div>
 
-<!-- box changed to container -->
-<div class="container">
-    <h1>CMPE/SE Advising</h1>
+        <!-- Chat container -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden" role="region" aria-label="Chat interface">
+            <!-- Chat messages -->
+            <div
+                id="chatbox"
+                class="h-[60vh] md:h-[65vh] overflow-y-auto p-4 space-y-4"
+                role="log"
+                aria-live="polite"
+                aria-atomic="false"
+                tabindex="0">
 
-    <div class = "chatbot">
+                <!-- Welcome message -->
+                <div class="message-animate">
+                    <div class="flex gap-3">
+                        <div class="flex-shrink-0 w-8 h-8 bg-sjsu-blue rounded-full flex items-center justify-center">
+                            <span class="text-white text-sm font-bold">H</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl rounded-tl-none p-4 max-w-[85%]">
+                                <p class="text-gray-800 dark:text-gray-200">
+                                    Hi! I'm HAL, your CMPE/SE advising assistant. I can help you with:
+                                </p>
+                                <ul class="mt-2 text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                                    <li>• Course prerequisites</li>
+                                    <li>• Add/drop procedures</li>
+                                    <li>• Finding your advisor</li>
+                                    <li>• GPA and graduation requirements</li>
+                                </ul>
+                                <p class="mt-3 text-xs text-gray-500 dark:text-gray-400">
+                                    If I can't help with something, I'll connect you with a human advisor.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div id="chatbox">
-            <p class="botText">
-                <span>Hi! Ask me a question related to CMPE or SE advising. If my response doesn't make sense then I might not support that question and you should ask me how your advisor is and book a meeting or you can try rewording the question and ask it again.</span>
+            <!-- Quick replies -->
+            <div class="border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 p-3">
+                <div id="quickReplies" class="flex gap-2 overflow-x-auto quick-replies-scroll pb-1" role="group" aria-label="Quick reply suggestions">
+                    <button onclick="sendQuickReply('What are the prerequisites for CS 149?')"
+                            class="quick-reply-btn flex-shrink-0 px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-sm text-gray-700 dark:text-gray-200 hover:border-sjsu-blue hover:text-sjsu-blue dark:hover:border-sjsu-gold dark:hover:text-sjsu-gold transition-colors focus-ring"
+                            tabindex="0">
+                        CS 149 Prerequisites
+                    </button>
+                    <button onclick="sendQuickReply('How do I add a class?')"
+                            class="quick-reply-btn flex-shrink-0 px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-sm text-gray-700 dark:text-gray-200 hover:border-sjsu-blue hover:text-sjsu-blue dark:hover:border-sjsu-gold dark:hover:text-sjsu-gold transition-colors focus-ring"
+                            tabindex="0">
+                        Add a Class
+                    </button>
+                    <button onclick="sendQuickReply('Who is my advisor?')"
+                            class="quick-reply-btn flex-shrink-0 px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-sm text-gray-700 dark:text-gray-200 hover:border-sjsu-blue hover:text-sjsu-blue dark:hover:border-sjsu-gold dark:hover:text-sjsu-gold transition-colors focus-ring"
+                            tabindex="0">
+                        Find My Advisor
+                    </button>
+                    <button onclick="sendQuickReply('What is the max units I can take?')"
+                            class="quick-reply-btn flex-shrink-0 px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-sm text-gray-700 dark:text-gray-200 hover:border-sjsu-blue hover:text-sjsu-blue dark:hover:border-sjsu-gold dark:hover:text-sjsu-gold transition-colors focus-ring"
+                            tabindex="0">
+                        Max Units
+                    </button>
+                </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div id="typingIndicator" class="hidden px-4 py-3 border-t border-gray-100 dark:border-gray-700">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 bg-sjsu-blue rounded-full flex items-center justify-center">
+                        <span class="text-white text-sm font-bold">H</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-gray-100 dark:bg-gray-700 rounded-full px-4 py-2">
+                        <div class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>
+                        <div class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>
+                        <div class="typing-dot w-2 h-2 bg-gray-400 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Fixed input at bottom -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-lg z-50">
+        <div class="max-w-4xl mx-auto px-4 py-3">
+            <div class="flex items-center gap-2">
+                <input
+                    id="textInput"
+                    type="text"
+                    class="flex-1 px-4 py-3 bg-gray-100 dark:bg-gray-700 border-0 rounded-xl text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-sjsu-blue focus:outline-none"
+                    placeholder="Type your message..."
+                    aria-label="Type your message"
+                    autocomplete="off"
+                />
+                <button
+                    id="sendBtn"
+                    onclick="getBotResponse()"
+                    class="p-3 bg-sjsu-blue hover:bg-blue-700 text-white rounded-xl transition-colors focus-ring disabled:opacity-50 disabled:cursor-not-allowed"
+                    aria-label="Send message">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                    </svg>
+                </button>
+            </div>
+            <p class="text-center text-xs text-gray-400 mt-2">
+                Press Enter to send • <button onclick="talkToHuman()" class="text-sjsu-blue hover:underline focus-ring">Talk to a human advisor</button>
             </p>
         </div>
+    </div>
 
-        <div id="userInput">
-          <div class = "inputBox">
-            <input id="textInput" type="text" name="msg" placeholder="Type your message here" />
-          </div>
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl max-w-md w-full p-6 shadow-xl" role="dialog" aria-labelledby="feedbackTitle">
+            <h3 id="feedbackTitle" class="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                Help us improve
+            </h3>
+            <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                What went wrong with this response? (Optional)
+            </p>
+            <textarea
+                id="feedbackComment"
+                class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-sjsu-blue focus:outline-none"
+                rows="3"
+                placeholder="The information was incorrect, unclear, etc..."></textarea>
+            <div class="mt-4 flex gap-2 justify-end">
+                <button onclick="closeFeedbackModal()" class="px-4 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                    Skip
+                </button>
+                <button onclick="submitFeedbackWithComment()" class="px-4 py-2 bg-sjsu-blue text-white rounded-lg hover:bg-blue-700">
+                    Submit
+                </button>
+            </div>
         </div>
-  </div>
+    </div>
 
-  <script>
-      function getBotResponse() {
-      var rawText = $("#textInput").val();
-      var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
-      $("#textInput").val("");
-      $("#chatbox").append(userHtml);
-      document
-          .getElementById("userInput")
-          .scrollIntoView({ block: "start", behavior: "smooth" });
-      $.get("/get", { msg: rawText }).done(function(data) {
-          var botHtml = '<p class="botText"><span>' + data + "</span></p>";
-          $("#chatbox").append(botHtml);
-          document
-          .getElementById("userInput")
-          .scrollIntoView({ block: "start", behavior: "smooth" });
-      });
-      }
-      $("#textInput").keypress(function(e) {
-      if (e.which == 13) {
-          getBotResponse();
-      }
-      });
-  </script>
-</div>
+    <script>
+        // State
+        let lastQuery = "";
+        let lastResponse = "";
+        let lastIntent = "";
+        let lastConfidence = 0;
+        let lastEscalated = false;
+        let lastResponseTime = 0;
+        let messageId = 0;
+        let pendingFeedbackMsgId = null;
+        let pendingFeedbackRating = null;
+        const ADVISOR_URL = "https://sjsu.campus.eab.com/student/appointments/new";
+
+        // Initialize
+        $(document).ready(function() {
+            // Get provider info
+            $.get("/api/status").done(function(data) {
+                $("#providerInfo").text("Powered by " + data.provider + " (" + data.model + ")");
+            });
+
+            // Check for saved dark mode preference
+            if (localStorage.getItem('darkMode') === 'true' ||
+                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+
+            // Load dynamic quick replies
+            loadQuickReplies();
+        });
+
+        // Dark mode toggle
+        document.getElementById('darkModeToggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        });
+
+        // Clear chat
+        document.getElementById('clearChatBtn').addEventListener('click', function() {
+            $.post("/api/clear-history").done(function() {
+                $("#chatbox").html(`
+                    <div class="message-animate">
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 bg-sjsu-blue rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">H</span>
+                            </div>
+                            <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl rounded-tl-none p-4">
+                                <p class="text-gray-800 dark:text-gray-200">Chat cleared! How can I help you?</p>
+                            </div>
+                        </div>
+                    </div>
+                `);
+                loadQuickReplies();
+            });
+        });
+
+        // Load dynamic quick replies based on context
+        function loadQuickReplies(context) {
+            $.ajax({
+                url: "/api/quick-replies",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    lastResponse: context?.last_response || "",
+                    lastQuery: lastQuery,
+                    intent: context?.last_intent || lastIntent
+                })
+            }).done(function(data) {
+                // API returns 'suggestions', not 'quick_replies'
+                const suggestions = data.suggestions || [];
+                if (suggestions.length > 0) {
+                    const container = $("#quickReplies");
+                    container.empty();
+                    suggestions.forEach(function(reply) {
+                        container.append(`
+                            <button onclick="sendQuickReply('${escapeHtml(reply)}')"
+                                    class="quick-reply-btn flex-shrink-0 px-4 py-2 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-full text-sm text-gray-700 dark:text-gray-200 hover:border-sjsu-blue hover:text-sjsu-blue transition-colors focus-ring">
+                                ${escapeHtml(reply)}
+                            </button>
+                        `);
+                    });
+                }
+            });
+        }
+
+        function sendQuickReply(message) {
+            $("#textInput").val(message);
+            getBotResponse();
+        }
+
+        function talkToHuman() {
+            window.open(ADVISOR_URL, '_blank');
+        }
+
+        function getConfidenceBadge(confidence, level) {
+            const levelClass = level === 'high' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                              level === 'medium' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400' :
+                              'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400';
+            const levelText = level ? level.charAt(0).toUpperCase() + level.slice(1) :
+                             (confidence >= 0.8 ? 'High' : confidence >= 0.5 ? 'Medium' : 'Low');
+            return `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${levelClass}">${levelText}</span>`;
+        }
+
+        function buildCourseCard(course) {
+            if (!course || !course.code) return '';
+
+            // Build prerequisites section
+            let prereqHtml = '';
+            if (course.prerequisites || course.prerequisites_cmpe || course.prerequisites_se) {
+                prereqHtml = '<div class="mt-2 pt-2 border-t border-gray-200 dark:border-gray-600">';
+                prereqHtml += '<p class="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">Prerequisites:</p>';
+
+                if (course.prerequisites_cmpe && course.prerequisites_se && course.prerequisites_cmpe !== course.prerequisites_se) {
+                    // Different prereqs for CMPE vs SE
+                    prereqHtml += `
+                        <p class="text-xs text-gray-600 dark:text-gray-300"><strong>CMPE:</strong> ${escapeHtml(course.prerequisites_cmpe)}</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300"><strong>SE:</strong> ${escapeHtml(course.prerequisites_se)}</p>
+                    `;
+                } else {
+                    // Same prereqs
+                    prereqHtml += `<p class="text-xs text-gray-600 dark:text-gray-300">${escapeHtml(course.prerequisites || course.prerequisites_cmpe || course.prerequisites_se || 'None')}</p>`;
+                }
+                prereqHtml += '</div>';
+            }
+
+            return `
+                <div class="course-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-sjsu-blue to-blue-700 text-white rounded-xl flex items-center justify-center font-bold text-sm">
+                            ${course.code.split(' ')[0]}
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-2">
+                                <h4 class="font-bold text-gray-900 dark:text-white">${escapeHtml(course.code)}</h4>
+                                ${course.units ? `<span class="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full">${course.units} units</span>` : ''}
+                            </div>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 font-medium">${escapeHtml(course.name)}</p>
+                            ${course.description ? `<p class="mt-1 text-xs text-gray-500 dark:text-gray-400 line-clamp-2">${escapeHtml(course.description)}</p>` : ''}
+                            ${prereqHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildCourseCardsSection(courseCards) {
+            if (!courseCards || courseCards.length === 0) return '';
+
+            const cards = courseCards.map(c => buildCourseCard(c)).join('');
+            return `
+                <div class="mt-4 space-y-3">
+                    <p class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">Related Courses</p>
+                    <div class="grid gap-3 ${courseCards.length > 1 ? 'md:grid-cols-2' : ''}">
+                        ${cards}
+                    </div>
+                </div>
+            `;
+        }
+
+        function buildEscalationCard(reason) {
+            const reasonText = {
+                'low_confidence': "I'm not confident enough to answer this accurately.",
+                'no_relevant_documents': "I don't have this information in my knowledge base.",
+                'personal_situation': "This requires personalized attention.",
+                'appeals_or_exceptions': "Appeals and exceptions need advisor assistance.",
+                'academic_standing': "Academic standing should be discussed with an advisor.",
+                'out_of_scope': "This is outside my expertise.",
+                'user_requested_human': "You asked to speak with a human advisor."
+            };
+            return `
+                <div class="mt-4 bg-gradient-to-r from-orange-50 to-amber-50 dark:from-orange-900/20 dark:to-amber-900/20 border border-orange-200 dark:border-orange-800 rounded-xl p-4">
+                    <h4 class="font-semibold text-orange-800 dark:text-orange-300 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+                        </svg>
+                        I recommend speaking with an advisor
+                    </h4>
+                    <p class="mt-2 text-sm text-orange-700 dark:text-orange-400">${reasonText[reason] || 'I recommend verifying this with an advisor.'}</p>
+                    <a href="${ADVISOR_URL}" target="_blank"
+                       class="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-lg text-sm font-medium transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                        </svg>
+                        Book Appointment
+                    </a>
+                </div>
+            `;
+        }
+
+        function showFeedbackModal(msgId, rating) {
+            pendingFeedbackMsgId = msgId;
+            pendingFeedbackRating = rating;
+            $("#feedbackComment").val('');
+            $("#feedbackModal").removeClass('hidden');
+        }
+
+        function closeFeedbackModal() {
+            sendFeedback(pendingFeedbackMsgId, pendingFeedbackRating, null);
+            $("#feedbackModal").addClass('hidden');
+        }
+
+        function submitFeedbackWithComment() {
+            const comment = $("#feedbackComment").val();
+            sendFeedback(pendingFeedbackMsgId, pendingFeedbackRating, comment);
+            $("#feedbackModal").addClass('hidden');
+        }
+
+        function submitFeedback(msgId, rating) {
+            if (rating === 1) {
+                showFeedbackModal(msgId, rating);
+            } else {
+                sendFeedback(msgId, rating, null);
+            }
+        }
+
+        function sendFeedback(msgId, rating, comment) {
+            $.ajax({
+                url: "/api/feedback",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    rating: rating,
+                    query: lastQuery,
+                    response: lastResponse,
+                    comment: comment,
+                    intent: lastIntent,
+                    confidence: lastConfidence,
+                    escalated_to_human: lastEscalated,
+                    response_time_ms: lastResponseTime
+                })
+            }).done(function() {
+                $(`#feedback-${msgId} .feedback-btn`).removeClass('text-sjsu-blue dark:text-sjsu-gold');
+                $(`#feedback-${msgId} button[data-rating="${rating}"]`).addClass('text-sjsu-blue dark:text-sjsu-gold');
+
+                if (rating === 1) {
+                    $(`#feedback-${msgId}`).append('<span class="text-xs text-gray-500 ml-2">Thanks for helping us improve!</span>');
+                }
+            });
+        }
+
+        function getBotResponse() {
+            const rawText = $("#textInput").val().trim();
+            if (!rawText) return;
+
+            const startTime = Date.now();
+            lastQuery = rawText;
+            messageId++;
+            const currentMsgId = messageId;
+
+            // Add user message
+            const userHtml = `
+                <div class="message-animate flex justify-end">
+                    <div class="bg-sjsu-blue text-white rounded-2xl rounded-tr-none p-4 max-w-[85%]">
+                        <p>${escapeHtml(rawText)}</p>
+                    </div>
+                </div>
+            `;
+            $("#textInput").val("");
+            $("#chatbox").append(userHtml);
+
+            // Show typing indicator
+            $("#typingIndicator").removeClass("hidden");
+            scrollToBottom();
+
+            // Send request
+            $.ajax({
+                url: "/api/chat",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ message: rawText })
+            }).done(function(data) {
+                lastResponseTime = Date.now() - startTime;
+                $("#typingIndicator").addClass("hidden");
+
+                lastResponse = data.response;
+                lastConfidence = data.confidence || 0;
+                lastIntent = data.intent || '';
+                lastEscalated = data.escalate_to_human || false;
+
+                // Build bot response
+                let botHtml = `
+                    <div class="message-animate">
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 bg-sjsu-blue rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">H</span>
+                            </div>
+                            <div class="flex-1 max-w-[85%]">
+                                <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl rounded-tl-none p-4">
+                                    <p class="text-gray-800 dark:text-gray-200">${formatResponse(data.response)}</p>
+                                </div>
+
+                                <div class="mt-2 flex flex-wrap items-center gap-2">
+                                    ${getConfidenceBadge(data.confidence, data.confidence_level)}
+                                    ${data.intent && data.intent !== 'general_question' ?
+                                        `<span class="text-xs text-gray-500 dark:text-gray-400">${data.intent.replace(/_/g, ' ')}</span>` : ''}
+
+                                    <div id="feedback-${currentMsgId}" class="flex items-center gap-1 ml-auto">
+                                        <button onclick="submitFeedback(${currentMsgId}, 2)" data-rating="2"
+                                                class="feedback-btn p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors focus-ring"
+                                                title="Good response" aria-label="Mark as helpful">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
+                                            </svg>
+                                        </button>
+                                        <button onclick="submitFeedback(${currentMsgId}, 1)" data-rating="1"
+                                                class="feedback-btn p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors focus-ring"
+                                                title="Bad response" aria-label="Mark as not helpful">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14H5.236a2 2 0 01-1.789-2.894l3.5-7A2 2 0 018.736 3h4.018a2 2 0 01.485.06l3.76.94m-7 10v5a2 2 0 002 2h.096c.5 0 .905-.405.905-.904 0-.715.211-1.413.608-2.008L17 13V4m-7 10h2m5-10h2a2 2 0 012 2v6a2 2 0 01-2 2h-2.5"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                ${data.resolved_query ? `<p class="mt-2 text-xs text-gray-400 italic">Understood as: "${escapeHtml(data.resolved_query)}"</p>` : ''}
+                                ${data.course_cards && data.course_cards.length > 0 ? buildCourseCardsSection(data.course_cards) : ''}
+                                ${data.escalate && data.escalation_reason ? buildEscalationCard(data.escalation_reason) : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                $("#chatbox").append(botHtml);
+                scrollToBottom();
+
+                // Update quick replies based on context
+                loadQuickReplies({ last_response: data.response, last_intent: data.intent });
+
+            }).fail(function() {
+                $("#typingIndicator").addClass("hidden");
+                const errorHtml = `
+                    <div class="message-animate">
+                        <div class="flex gap-3">
+                            <div class="flex-shrink-0 w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm">!</span>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 rounded-2xl rounded-tl-none p-4">
+                                <p>Sorry, I encountered an error. Please try again or
+                                    <a href="${ADVISOR_URL}" target="_blank" class="underline">contact an advisor</a>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                $("#chatbox").append(errorHtml);
+                scrollToBottom();
+            });
+        }
+
+        function formatResponse(text) {
+            // Convert URLs to links
+            text = text.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" class="text-sjsu-blue hover:underline">$1</a>');
+            // Convert newlines to <br>
+            text = text.replace(/\n/g, '<br>');
+            return text;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function scrollToBottom() {
+            const chatbox = document.getElementById('chatbox');
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Alt+M: Focus message input
+            if (e.altKey && e.key === 'm') {
+                e.preventDefault();
+                document.getElementById('textInput').focus();
+            }
+        });
+
+        // Enter to send
+        $("#textInput").keypress(function(e) {
+            if (e.which == 13) {
+                getBotResponse();
+            }
+        });
+    </script>
 </body>
 </html>
