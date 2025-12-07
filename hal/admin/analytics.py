@@ -14,8 +14,8 @@ import json
 
 from sqlalchemy import func, desc, and_
 
-from models import db, Conversation, Feedback, Course
-from config import Config
+from hal.models import db, Conversation, Feedback, Course
+from hal.config import Config
 
 
 class AnalyticsEngine:

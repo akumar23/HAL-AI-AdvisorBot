@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from enum import Enum
 from datetime import datetime
 
-from config import Config
+from hal.config import Config
 
 
 class EscalationReason(Enum):

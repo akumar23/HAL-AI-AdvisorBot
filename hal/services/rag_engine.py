@@ -18,9 +18,9 @@ from dataclasses import dataclass
 
 import chromadb
 
-from config import Config, LLMProvider
-from models import Course, Advisor, Policy, Deadline, db
-from llm_providers import get_llm_provider, get_embeddings_provider, LLMResponse
+from hal.config import Config, LLMProvider
+from hal.models import Course, Advisor, Policy, Deadline, db
+from hal.services.llm_providers import get_llm_provider, get_embeddings_provider, LLMResponse
 
 
 @dataclass
@@ -353,9 +353,9 @@ def query_advisor(
     Returns:
         Dict with response, confidence, sources, and escalation info
     """
-    from intent_classifier import classify_intent, Intent
-    from conversation_manager import get_conversation_manager
-    from confidence_scoring import get_confidence_scorer, get_human_handoff
+    from hal.services.intent_classifier import classify_intent, Intent
+    from hal.services.conversation_manager import get_conversation_manager
+    from hal.services.confidence_scoring import get_confidence_scorer, get_human_handoff
 
     rag = get_rag_engine()
     conv_manager = get_conversation_manager()

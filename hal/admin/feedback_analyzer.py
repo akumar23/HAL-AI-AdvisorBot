@@ -15,9 +15,9 @@ import re
 
 from sqlalchemy import and_, desc
 
-from models import db, Feedback
-from config import Config
-from llm_providers import get_llm_provider
+from hal.models import db, Feedback
+from hal.config import Config
+from hal.services.llm_providers import get_llm_provider
 
 
 @dataclass

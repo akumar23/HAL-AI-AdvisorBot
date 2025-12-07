@@ -11,12 +11,11 @@ from datetime import datetime
 from flask import Flask, render_template, request, jsonify, session
 from flask_session import Session
 
-from config import get_config, Config
-from models import db, init_db, Conversation, Feedback
-from admin import init_admin
-from rag_engine import query_advisor, get_rag_engine
-from quick_replies import generate_quick_replies
-from scheduler import init_scheduler, get_scheduler
+from hal.config import get_config, Config
+from hal.models import db, init_db, Conversation, Feedback
+from hal.admin import init_admin
+from hal.services import query_advisor, get_rag_engine, generate_quick_replies
+from hal.utils import init_scheduler, get_scheduler
 
 
 def create_app(config_class=None):
@@ -262,7 +261,7 @@ def _extract_course_cards(sources: list) -> list:
 
     Returns structured course information for rich display.
     """
-    from models import Course
+    from hal.models import Course
 
     course_cards = []
     seen_codes = set()
@@ -314,34 +313,3 @@ def _store_conversation(session_id: str, user_message: str, bot_response: str):
         db.session.rollback()
         # Log but don't fail the request
         print(f"Error storing conversation: {e}")
-
-
-# Create the app instance
-app = create_app()
-
-# Initialize scheduler (only when not in debug reload)
-import os
-if os.environ.get("WERKZEUG_RUN_MAIN") == "true" or not app.debug:
-    init_scheduler(app)
-
-if __name__ == "__main__":
-    # Print startup info
-    print("=" * 50)
-    print("HAL Advisor Bot")
-    print("=" * 50)
-    print(f"LLM Provider: {Config.LLM_PROVIDER.value}")
-    print(f"Model: {Config.get_llm_config().model}")
-    print(f"Database: {Config.SQLALCHEMY_DATABASE_URI}")
-    print()
-    print("Endpoints:")
-    print("  Chat:  http://localhost:5000/")
-    print("  Admin: http://localhost:5000/admin")
-    print("  API:   http://localhost:5000/api/chat")
-    print()
-    print("Background Jobs:")
-    scheduler = get_scheduler()
-    for job in scheduler.get_jobs():
-        print(f"  - {job['name']}: {job['trigger']}")
-    print("=" * 50)
-
-    app.run(debug=True, port=5000)

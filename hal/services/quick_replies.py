@@ -8,8 +8,8 @@ from typing import List, Dict, Optional
 import json
 import re
 
-from config import Config, LLMProvider
-from llm_providers import get_llm_provider
+from hal.config import Config, LLMProvider
+from hal.services.llm_providers import get_llm_provider
 
 
 # Default quick replies by category

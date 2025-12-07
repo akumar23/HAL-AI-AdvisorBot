@@ -9,7 +9,7 @@ from abc import ABC, abstractmethod
 from typing import List, Dict, Optional
 from dataclasses import dataclass
 
-from config import LLMProvider, LLMConfig, Config
+from hal.config import LLMProvider, LLMConfig, Config
 
 
 @dataclass

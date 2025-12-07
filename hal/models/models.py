@@ -207,7 +207,7 @@ def init_db(app):
         db.create_all()
         # Create default admin user if none exists
         if not AdminUser.query.first():
-            from config import Config
+            from hal.config import Config
             admin = AdminUser(username=Config.ADMIN_USERNAME)
             admin.set_password(Config.ADMIN_PASSWORD)
             db.session.add(admin)

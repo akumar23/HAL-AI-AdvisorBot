@@ -18,10 +18,10 @@ from flask_admin.contrib.sqla import ModelView
 from wtforms import TextAreaField, SelectField, PasswordField
 from wtforms.validators import DataRequired
 
-from models import db, Course, Advisor, Policy, Deadline, Feedback, Conversation, AdminUser
-from config import Config
-from analytics import get_analytics_engine
-from feedback_analyzer import get_feedback_analyzer
+from hal.models import db, Course, Advisor, Policy, Deadline, Feedback, Conversation, AdminUser
+from hal.config import Config
+from hal.admin.analytics import get_analytics_engine
+from hal.admin.feedback_analyzer import get_feedback_analyzer
 
 
 class AuthMixin:
@@ -293,8 +293,7 @@ def init_admin(app):
     admin = Admin(
         app,
         name="HAL Admin",
-        index_view=SecureAdminIndexView(),
-        base_template="admin/custom_base.html"
+        index_view=SecureAdminIndexView()
     )
 
     # Add model views

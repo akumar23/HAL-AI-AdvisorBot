@@ -15,7 +15,7 @@ from typing import Dict, Optional, List, Tuple
 from dataclasses import dataclass
 from enum import Enum
 
-from config import Config, LLMProvider, LLMConfig, CLASSIFIER_MODELS
+from hal.config import Config, LLMProvider, LLMConfig, CLASSIFIER_MODELS
 
 
 class Intent(Enum):

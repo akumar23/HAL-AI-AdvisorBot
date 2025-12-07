@@ -9,12 +9,12 @@ import sys
 from datetime import datetime
 
 # Import the Flask app to get the application context
-from app import create_app
-from models import db, Course, Advisor, Policy, Deadline, AdminUser
-from rag_engine import get_rag_engine
+from hal.app import create_app
+from hal.models import db, Course, Advisor, Policy, Deadline, AdminUser
+from hal.services.rag_engine import get_rag_engine
 
 # Import the old training data
-import trainingData
+from legacy import trainingData
 
 
 def parse_course_code(tag: str) -> str:

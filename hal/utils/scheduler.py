@@ -94,7 +94,7 @@ class HALScheduler:
         logger.info("Running weekly feedback analysis...")
 
         try:
-            from feedback_analyzer import get_feedback_analyzer
+            from hal.admin.feedback_analyzer import get_feedback_analyzer
 
             analyzer = get_feedback_analyzer()
             report = analyzer.generate_weekly_report()
@@ -130,7 +130,7 @@ class HALScheduler:
         logger.info("Running daily analytics aggregation...")
 
         try:
-            from analytics import get_analytics_engine
+            from hal.admin.analytics import get_analytics_engine
 
             analytics = get_analytics_engine()
 
@@ -152,7 +152,7 @@ class HALScheduler:
         logger.info("Checking RAG index health...")
 
         try:
-            from rag_engine import get_rag_engine
+            from hal.services.rag_engine import get_rag_engine
 
             rag = get_rag_engine()
 
@@ -173,7 +173,7 @@ class HALScheduler:
         logger.info("Running weekly cleanup...")
 
         try:
-            from models import db, Conversation
+            from hal.models import db, Conversation
             from datetime import datetime, timedelta
 
             # Delete conversations older than 90 days

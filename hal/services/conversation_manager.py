@@ -13,7 +13,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from collections import deque
 
-from models import db, Conversation
+from hal.models import db, Conversation
 
 
 @dataclass
