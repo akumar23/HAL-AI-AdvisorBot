@@ -2,7 +2,7 @@
 flask>=2.3.0
 flask-sqlalchemy>=3.0.0
 flask-session>=0.5.0
-flask-admin>=1.6.0
+flask-cors>=4.0.0
 werkzeug>=2.3.0
 
 # Database
@@ -27,6 +27,9 @@ python-dotenv>=1.0.0
 
 # Background Jobs
 apscheduler>=3.10.0
+
+# Production Server
+gunicorn>=21.0.0
 
 # Legacy (for backwards compatibility during migration)
 # chatterbot==1.0.0

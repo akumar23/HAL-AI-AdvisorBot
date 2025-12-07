@@ -46,9 +46,9 @@ MAIN_MODELS = {
         "best": "gpt-4o",
     },
     LLMProvider.OLLAMA: {
-        "default": "qwen2.5:7b",
-        "fast": "qwen2.5:7b",
-        "best": "qwen2.5:14b",
+        "default": os.environ.get("OLLAMA_MODEL", "llama3.1:8b"),
+        "fast": os.environ.get("OLLAMA_MODEL", "llama3.1:8b"),
+        "best": os.environ.get("OLLAMA_MODEL", "llama3.1:8b"),
     },
 }
 
@@ -56,7 +56,7 @@ MAIN_MODELS = {
 CLASSIFIER_MODELS = {
     LLMProvider.CLAUDE: "claude-3-5-haiku-20241022",  # Fast and cheap
     LLMProvider.OPENAI: "gpt-4o-mini",  # Very fast, 15x cheaper than gpt-4o
-    LLMProvider.OLLAMA: "phi3:3.8b",  # Small, fast, good at classification
+    LLMProvider.OLLAMA: os.environ.get("OLLAMA_CLASSIFIER_MODEL", os.environ.get("OLLAMA_MODEL", "llama3.1:8b")),
 }
 
 # Embedding models per provider
