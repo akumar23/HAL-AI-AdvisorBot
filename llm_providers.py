@@ -6,7 +6,7 @@ Users can switch between providers via configuration.
 """
 import os
 from abc import ABC, abstractmethod
-from typing import List, Dict, Optional, Generator
+from typing import List, Dict, Optional
 from dataclasses import dataclass
 
 from config import LLMProvider, LLMConfig, Config
@@ -51,16 +51,6 @@ Always prioritize accuracy over being helpful. It's better to say you don't know
         conversation_history: Optional[List[Dict]] = None
     ) -> LLMResponse:
         """Generate a response given a query and context"""
-        pass
-
-    @abstractmethod
-    def generate_stream(
-        self,
-        query: str,
-        context: str,
-        conversation_history: Optional[List[Dict]] = None
-    ) -> Generator[str, None, None]:
-        """Stream a response given a query and context"""
         pass
 
     @abstractmethod
@@ -142,24 +132,6 @@ class ClaudeProvider(BaseLLMProvider):
             }
         )
 
-    def generate_stream(
-        self,
-        query: str,
-        context: str,
-        conversation_history: Optional[List[Dict]] = None
-    ) -> Generator[str, None, None]:
-        messages = self._build_messages(query, context, conversation_history)
-
-        with self.client.messages.stream(
-            model=self.config.model,
-            max_tokens=self.config.max_tokens,
-            temperature=self.config.temperature,
-            system=self.system_prompt,
-            messages=messages
-        ) as stream:
-            for text in stream.text_stream:
-                yield text
-
     def generate_simple(
         self,
         prompt: str,
@@ -210,27 +182,6 @@ class OpenAIProvider(BaseLLMProvider):
                 "output_tokens": response.usage.completion_tokens
             }
         )
-
-    def generate_stream(
-        self,
-        query: str,
-        context: str,
-        conversation_history: Optional[List[Dict]] = None
-    ) -> Generator[str, None, None]:
-        messages = [{"role": "system", "content": self.system_prompt}]
-        messages.extend(self._build_messages(query, context, conversation_history))
-
-        stream = self.client.chat.completions.create(
-            model=self.config.model,
-            messages=messages,
-            max_tokens=self.config.max_tokens,
-            temperature=self.config.temperature,
-            stream=True
-        )
-
-        for chunk in stream:
-            if chunk.choices[0].delta.content:
-                yield chunk.choices[0].delta.content
 
     def generate_simple(
         self,
@@ -285,29 +236,6 @@ class OllamaProvider(BaseLLMProvider):
                 "eval_count": response.get("eval_count"),
             }
         )
-
-    def generate_stream(
-        self,
-        query: str,
-        context: str,
-        conversation_history: Optional[List[Dict]] = None
-    ) -> Generator[str, None, None]:
-        messages = [{"role": "system", "content": self.system_prompt}]
-        messages.extend(self._build_messages(query, context, conversation_history))
-
-        stream = self.client.chat(
-            model=self.config.model,
-            messages=messages,
-            options={
-                "temperature": self.config.temperature,
-                "num_predict": self.config.max_tokens,
-            },
-            stream=True
-        )
-
-        for chunk in stream:
-            if chunk.get("message", {}).get("content"):
-                yield chunk["message"]["content"]
 
     def generate_simple(
         self,
