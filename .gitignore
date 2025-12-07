@@ -40,3 +40,5 @@ chroma_db/
 .DS_Store
 Thumbs.db
 tailwindcss
+agents/
+package-lock.json
