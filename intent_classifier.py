@@ -15,7 +15,7 @@ from typing import Dict, Optional, List, Tuple
 from dataclasses import dataclass
 from enum import Enum
 
-from config import Config, LLMProvider, LLMConfig
+from config import Config, LLMProvider, LLMConfig, CLASSIFIER_MODELS
 
 
 class Intent(Enum):
@@ -55,14 +55,6 @@ class ClassificationResult:
     escalate_to_human: bool
     escalation_reason: Optional[str]
     raw_response: Optional[str] = None
-
-
-# Fast classification models (smaller/cheaper than main RAG models)
-CLASSIFIER_MODELS = {
-    LLMProvider.CLAUDE: "claude-3-5-haiku-20241022",
-    LLMProvider.OPENAI: "gpt-4o-mini",
-    LLMProvider.OLLAMA: "phi3:3.8b",  # or qwen2.5:3b
-}
 
 
 class IntentClassifier:
@@ -125,19 +117,14 @@ Student query: """
         return CLASSIFIER_MODELS.get(self._provider, CLASSIFIER_MODELS[LLMProvider.OLLAMA])
 
     def _init_client(self):
-        """Lazy-initialize the LLM client"""
+        """Lazy-initialize the LLM client using centralized provider"""
         if self._client is not None:
             return
 
-        if self._provider == LLMProvider.CLAUDE:
-            import anthropic
-            self._client = anthropic.Anthropic(api_key=Config.ANTHROPIC_API_KEY)
-        elif self._provider == LLMProvider.OPENAI:
-            from openai import OpenAI
-            self._client = OpenAI(api_key=Config.OPENAI_API_KEY)
-        elif self._provider == LLMProvider.OLLAMA:
-            import ollama
-            self._client = ollama
+        from llm_providers import get_llm_provider
+        provider_wrapper = get_llm_provider(use_classifier=True)
+        # Extract the raw client for direct API access
+        self._client = provider_wrapper.client
 
     def classify(
         self,

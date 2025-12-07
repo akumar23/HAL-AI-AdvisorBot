@@ -66,9 +66,6 @@ EMBEDDING_MODELS = {
     LLMProvider.OLLAMA: "nomic-embed-text",
 }
 
-# Backward compatibility alias
-RECOMMENDED_MODELS = MAIN_MODELS
-
 
 class Config:
     """Application configuration"""
