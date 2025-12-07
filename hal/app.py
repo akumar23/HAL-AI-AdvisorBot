@@ -10,17 +10,24 @@ from datetime import datetime
 
 from flask import Flask, render_template, request, jsonify, session
 from flask_session import Session
+from flask_cors import CORS
 
 from hal.config import get_config, Config
 from hal.models import db, init_db, Conversation, Feedback
-from hal.admin import init_admin
+from hal.api.admin_api import admin_api
 from hal.services import query_advisor, get_rag_engine, generate_quick_replies
 from hal.utils import init_scheduler, get_scheduler
 
 
 def create_app(config_class=None):
     """Application factory"""
-    app = Flask(__name__)
+    # Get the project root directory (parent of hal package)
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    app = Flask(
+        __name__,
+        template_folder=os.path.join(project_root, 'templates'),
+        static_folder=os.path.join(project_root, 'static')
+    )
 
     # Load configuration
     if config_class is None:
@@ -29,8 +36,16 @@ def create_app(config_class=None):
 
     # Initialize extensions
     Session(app)
+    # Allow CORS from Next.js frontend (local dev and Docker)
+    CORS(app, origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://localhost:5001",  # Docker exposed port
+    ], supports_credentials=True)
     init_db(app)
-    init_admin(app)
+
+    # Register blueprints
+    app.register_blueprint(admin_api)
 
     # Register routes
     register_routes(app)
@@ -60,6 +75,10 @@ def register_routes(app):
             return "Please enter a message."
 
         try:
+            # Create session ID if not exists
+            if "session_id" not in session:
+                session["session_id"] = str(uuid.uuid4())
+
             # Get conversation history from session
             history = session.get("conversation_history", [])
 
@@ -105,6 +124,10 @@ def register_routes(app):
             return jsonify({"error": "Message is required"}), 400
 
         try:
+            # Create session ID if not exists (needed for API-first clients like Next.js)
+            if "session_id" not in session:
+                session["session_id"] = str(uuid.uuid4())
+
             # Get conversation history
             history = session.get("conversation_history", [])
 

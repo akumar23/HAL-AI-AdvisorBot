@@ -206,9 +206,14 @@ def init_db(app):
     with app.app_context():
         db.create_all()
         # Create default admin user if none exists
-        if not AdminUser.query.first():
-            from hal.config import Config
-            admin = AdminUser(username=Config.ADMIN_USERNAME)
-            admin.set_password(Config.ADMIN_PASSWORD)
-            db.session.add(admin)
-            db.session.commit()
+        # Use try/except to handle race condition with multiple gunicorn workers
+        try:
+            if not AdminUser.query.first():
+                from hal.config import Config
+                admin = AdminUser(username=Config.ADMIN_USERNAME)
+                admin.set_password(Config.ADMIN_PASSWORD)
+                db.session.add(admin)
+                db.session.commit()
+        except Exception:
+            # Another worker already created the admin user
+            db.session.rollback()

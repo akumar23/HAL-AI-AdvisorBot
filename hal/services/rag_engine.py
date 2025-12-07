@@ -399,12 +399,31 @@ def query_advisor(
         context = conv_manager.get_context(session_id)
         context_summary = context.get_context_summary()
 
+    # First try with filter, then fallback to unfiltered if results are poor
     response, retrieved_docs = rag.generate_response(
         query=resolved_query,
         conversation_history=conversation_history,
         filter_type=filter_type,
         context_summary=context_summary
     )
+
+    # If filtered results have low scores, try unfiltered search
+    MIN_SCORE_THRESHOLD = 0.5
+    if filter_type and retrieved_docs:
+        avg_score = sum(d.score for d in retrieved_docs) / len(retrieved_docs)
+        if avg_score < MIN_SCORE_THRESHOLD:
+            # Try unfiltered search to find better matches
+            unfiltered_response, unfiltered_docs = rag.generate_response(
+                query=resolved_query,
+                conversation_history=conversation_history,
+                filter_type=None,  # No filter
+                context_summary=context_summary
+            )
+            unfiltered_avg = sum(d.score for d in unfiltered_docs) / len(unfiltered_docs) if unfiltered_docs else 0
+            # Use unfiltered results if they're significantly better
+            if unfiltered_avg > avg_score + 0.05:
+                response = unfiltered_response
+                retrieved_docs = unfiltered_docs
 
     # Update conversation with response
     if session_id:

@@ -121,7 +121,7 @@ Student query: """
         if self._client is not None:
             return
 
-        from llm_providers import get_llm_provider
+        from hal.services.llm_providers import get_llm_provider
         provider_wrapper = get_llm_provider(use_classifier=True)
         # Extract the raw client for direct API access
         self._client = provider_wrapper.client
